@@ -1,24 +1,24 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { studentsData } from "../data/data";
-import FilterBox from "../components/FilterBox";
+import { studentsData } from "../data/data"; // Assuming you have this imported correctly
+import FilterBox from "../components/FilterBox"; // Assuming FilterBox exists
 
 function StatePage() {
   const { stateName } = useParams();
   const [selectedCenters, setSelectedCenters] = useState([]);
 
-  // Step 1: Filter only students from the clicked state
+  // Filter students based on the state name
   const stateStudents = studentsData.filter(
     (student) =>
-      student["Center State"].toLowerCase() === stateName.toLowerCase()
+      student["Center State"]?.toLowerCase() === stateName.toLowerCase()
   );
 
-  // Step 2: Extract unique center codes from only this state's students
+  // Get unique center codes for the state
   const uniqueCenterCodes = [
     ...new Set(stateStudents.map((s) => s["Center Code"])),
   ];
 
-  // Step 3: Apply multi-select center code filter
+  // Filter data based on selected center codes
   const filteredData =
     selectedCenters.length > 0
       ? stateStudents.filter((student) =>
@@ -26,9 +26,59 @@ function StatePage() {
         )
       : stateStudents;
 
+  // Initialize an object to store center-wise summary
+  const centerSummary = {};
+
+  // Loop through the filtered students and generate the center-wise summary
+  filteredData.forEach((student) => {
+    const centerCode = student["Center Code"];
+    const centerName = student["Center Name"];
+    const status = student["Student Status"]?.toLowerCase() || "";
+    const finalExamMarks = student["Final Exam Marks"]; // Get the final exam marks
+
+    // If center does not exist in summary, initialize it
+    if (!centerSummary[centerCode]) {
+      centerSummary[centerCode] = {
+        centerName,
+        enrolled: 0,
+        trained: 0,
+        dropout: 0,
+        placed: 0,
+      };
+    }
+
+    const summary = centerSummary[centerCode];
+    summary.enrolled += 1;
+
+    // Count as trained if Final Exam Marks exist (not NaN, null, undefined)
+    if (finalExamMarks && !isNaN(finalExamMarks)) {
+      summary.trained += 1;
+    }
+
+    // Check if student is dropped out or placed
+    if (status === "dropped out" || status === "dropped") summary.dropout += 1;
+    if (status === "placed") summary.placed += 1;
+  });
+
+  // Calculate total summary across all centers
+  const total = {
+    enrolled: 0,
+    trained: 0,
+    dropout: 0,
+    placed: 0,
+  };
+
+  // Aggregate values from center-wise summary into total
+  Object.values(centerSummary).forEach((center) => {
+    total.enrolled += center.enrolled;
+    total.trained += center.trained;
+    total.dropout += center.dropout;
+    total.placed += center.placed;
+  });
+
   return (
     <div>
-      <h1>{stateName.toUpperCase()} - Students</h1>
+      <h1>{stateName.toUpperCase()} - Center Summary</h1>
 
       {uniqueCenterCodes.length > 0 ? (
         <FilterBox options={uniqueCenterCodes} onChange={setSelectedCenters} />
@@ -44,23 +94,33 @@ function StatePage() {
       >
         <thead>
           <tr>
-            <th>Student ID</th>
-            <th>Student Name</th>
-            <th>Center State</th>
             <th>Center Code</th>
-            <th>Primary Email</th>
+            <th>Center Name</th>
+            <th>Enrolled</th>
+            <th>Trained</th>
+            <th>Dropouts</th>
+            <th>Placed</th>
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((student, idx) => (
-            <tr key={idx}>
-              <td>{student["Student ID"]}</td>
-              <td>{student["Student Name"]}</td>
-              <td>{student["Center State"]}</td>
-              <td>{student["Center Code"]}</td>
-              <td>{student["Primary Email ID"]}</td>
+          {Object.entries(centerSummary).map(([code, data]) => (
+            <tr key={code}>
+              <td>{code}</td>
+              <td>{data.centerName}</td>
+              <td>{data.enrolled}</td>
+              <td>{data.trained}</td>
+              <td>{data.dropout}</td>
+              <td>{data.placed}</td>
             </tr>
           ))}
+
+          <tr style={{ fontWeight: "bold", backgroundColor: "#f0f0f0" }}>
+            <td colSpan="2">TOTAL</td>
+            <td>{total.enrolled}</td>
+            <td>{total.trained}</td>
+            <td>{total.dropout}</td>
+            <td>{total.placed}</td>
+          </tr>
         </tbody>
       </table>
     </div>
