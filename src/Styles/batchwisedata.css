@@ -1,0 +1,99 @@
+.batch-container {
+    padding: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+
+  .batch-title {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 24px;
+    animation: fadeInDown 0.6s ease-in-out;
+  }
+  
+
+  .filter-box-container {
+    margin-bottom: 20px;
+    animation: fadeIn 0.4s ease-in;
+  }
+  
+
+  .batch-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease-in-out;
+  }
+  
+  .batch-table th,
+  .batch-table td {
+    padding: 12px 16px;
+    text-align: center;
+  }
+  
+  .batch-table th {
+    background-color: #007acc;
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .batch-table tbody tr:hover {
+    background-color: #f1f8ff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .batch-table .total-row {
+    font-weight: bold;
+    background-color: #e9ecef;
+  }
+  
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @media (max-width: 768px) {
+    .batch-table th,
+    .batch-table td {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .batch-title {
+      font-size: 1.5rem;
+    }
+  }
+  

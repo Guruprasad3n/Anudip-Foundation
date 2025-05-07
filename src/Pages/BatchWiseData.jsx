@@ -1,40 +1,33 @@
-import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { studentsData } from "../data/data";
 import FilterBox from "../components/FilterBox";
-import "../Styles/statepage.css";
+import "../Styles/batchwisedata.css";
 
-function StatePage() {
-  const { stateName } = useParams();
+function BatchWiseData() {
   const [selectedCenters, setSelectedCenters] = useState([]);
 
-  const stateStudents = studentsData.filter(
-    (student) =>
-      student["Center State"]?.toLowerCase() === stateName.toLowerCase()
-  );
-
   const uniqueCenterCodes = [
-    ...new Set(stateStudents.map((s) => s["Center Code"])),
+    ...new Set(studentsData.map((s) => s["Center Code"]))
   ];
 
   const filteredData =
     selectedCenters.length > 0
-      ? stateStudents.filter((student) =>
+      ? studentsData.filter((student) =>
           selectedCenters.includes(student["Center Code"])
         )
-      : stateStudents;
+      : studentsData;
 
-  const centerSummary = {};
+  const batchSummary = {};
 
   filteredData.forEach((student) => {
+    const batchCode = student["Batch Code"];
     const centerCode = student["Center Code"];
-    const centerName = student["Center Name"];
     const status = student["Student Status"]?.toLowerCase() || "";
     const finalExamMarks = student["Final Exam Marks"];
 
-    if (!centerSummary[centerCode]) {
-      centerSummary[centerCode] = {
-        centerName,
+    if (!batchSummary[batchCode]) {
+      batchSummary[batchCode] = {
+        centerCode,
         enrolled: 0,
         trained: 0,
         dropout: 0,
@@ -42,7 +35,7 @@ function StatePage() {
       };
     }
 
-    const summary = centerSummary[centerCode];
+    const summary = batchSummary[batchCode];
     summary.enrolled += 1;
 
     if (finalExamMarks && !isNaN(finalExamMarks)) {
@@ -60,30 +53,26 @@ function StatePage() {
     placed: 0,
   };
 
-  Object.values(centerSummary).forEach((center) => {
-    total.enrolled += center.enrolled;
-    total.trained += center.trained;
-    total.dropout += center.dropout;
-    total.placed += center.placed;
+  Object.values(batchSummary).forEach((batch) => {
+    total.enrolled += batch.enrolled;
+    total.trained += batch.trained;
+    total.dropout += batch.dropout;
+    total.placed += batch.placed;
   });
 
   return (
-    <div className="state-container">
-      <h1 className="state-title">{stateName} - Center Summary</h1>
+    <div className="batch-container">
+      <h1 className="batch-title">Batch-wise Summary</h1>
 
-      {uniqueCenterCodes.length > 0 ? (
-        <div className="filter-box-container">
-          <FilterBox options={uniqueCenterCodes} onChange={setSelectedCenters} />
-        </div>
-      ) : (
-        <p>No center codes found for this state.</p>
-      )}
+      <div className="filter-box-container">
+        <FilterBox options={uniqueCenterCodes} onChange={setSelectedCenters} />
+      </div>
 
-      <table className="state-table">
+      <table className="batch-table" style={{zIndex:"1"}}>
         <thead>
           <tr>
             <th>Center Code</th>
-            <th>Center Name</th>
+            <th>Batch Code</th>
             <th>Enrolled</th>
             <th>Trained</th>
             <th>Dropouts</th>
@@ -91,17 +80,16 @@ function StatePage() {
           </tr>
         </thead>
         <tbody>
-          {Object.entries(centerSummary).map(([code, data]) => (
-            <tr key={code}>
-              <td>{code}</td>
-              <td>{data.centerName}</td>
+          {Object.entries(batchSummary).map(([batchCode, data]) => (
+            <tr key={batchCode}>
+              <td>{data.centerCode}</td>
+              <td>{batchCode}</td>
               <td>{data.enrolled}</td>
               <td>{data.trained}</td>
               <td>{data.dropout}</td>
               <td>{data.placed}</td>
             </tr>
           ))}
-
           <tr className="total-row">
             <td colSpan="2">TOTAL</td>
             <td>{total.enrolled}</td>
@@ -115,4 +103,4 @@ function StatePage() {
   );
 }
 
-export default StatePage;
+export default BatchWiseData;
