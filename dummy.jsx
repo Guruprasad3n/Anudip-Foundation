@@ -1,4 +1,5 @@
 
+import "./src/Pages/BatchWiseData"
 // import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 // import { studentsData } from "../data/data";

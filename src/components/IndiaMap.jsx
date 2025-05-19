@@ -8,18 +8,20 @@ function IndiaMap() {
   };
 
   return (
+    <div className='map-home'>
+
+   
     <svg
         baseprofile="tiny"
-        fill="#6f9c76"
+        fill="#0AB1B1"
         height="1000"
         stroke="#ffffff"
         stroke-linecap="round"
         stroke-linejoin="round"
-        strokeWidth=".5"
+        strokeWidth="1"
         version="1.2"
         viewbox="0 0 1000 1000"
         width="1000"
-        // xmlns="http://www.w3.org/2000/svg"
       >
         <g id="features">
           <path
@@ -339,6 +341,7 @@ function IndiaMap() {
           <circle class="Ladakh" cx="344.9" cy="136.5" id="INLA"></circle>
         </g> */}
       </svg>
+       </div>
   );
 }
 

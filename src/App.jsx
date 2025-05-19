@@ -1,9 +1,9 @@
 import { Router, Routes, Route } from "react-router-dom";
-// import Home from './pages/Home';
-import StatePage from "./components/StatePage";
+import StatePage from "./Pages/StatePage";
 import IndiaMap from "./components/IndiaMap";
 import Navbar from "./components/Navbar";
-import BatchWiseData from "./Pages/BatchWiseData";
+import "./App.css"
+import StateBatchWiseData from "./Pages/StateBatchWiseData";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<IndiaMap />} />
         <Route path="/state/:stateName" element={<StatePage />} />
-        <Route path="/batch-wise-data" element={<BatchWiseData />} />
+        <Route path="/state/:stateName/batches" element={<StateBatchWiseData />} />
       </Routes>
  </>
  );

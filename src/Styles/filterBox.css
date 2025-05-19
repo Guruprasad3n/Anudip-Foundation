@@ -1,40 +1,40 @@
 .filter-box-wrapper {
-    width: 300px;
-    position: relative;
-    z-index: 2;
-    margin: 0 0 20px auto;
-    animation: fadeIn 0.4s ease-in;
-  }
-  
-  .react-select__control {
-    border-color: #007acc;
-    box-shadow: none;
-  }
-  
-  .react-select__control--is-focused {
-    border-color: #005999;
-    box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
-  }
-  
-  .react-select__multi-value {
-    background-color: #e6f4ff;
-  }
-  
-  .react-select__multi-value__label {
-    color: #007acc;
-  }
-  
-  .react-select__multi-value__remove {
-    color: #007acc;
-  }
-  
-  .react-select__multi-value__remove:hover {
-    background-color: #cce4f7;
-    color: #005999;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
+  width: 300px;
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 0.4s ease-in;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.react-select__control {
+  border-color: #007acc;
+  box-shadow: none;
+}
+
+.react-select__control--is-focused {
+  border-color: #005999;
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+.react-select__multi-value {
+  background-color: #e6f4ff;
+}
+
+.react-select__multi-value__label {
+  color: #007acc;
+}
+
+.react-select__multi-value__remove {
+  color: #007acc;
+}
+
+.react-select__multi-value__remove:hover {
+  background-color: #cce4f7;
+  color: #005999;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
