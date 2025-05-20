@@ -34,7 +34,7 @@
   text-decoration: none;
   font-weight: bold;
   white-space: nowrap;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
 }
 
 .switch-button:hover {
@@ -44,8 +44,8 @@
 /* Filter box container */
 .filter-box-container {
   flex-shrink: 0;
-  width: 280px; /* fixed width or adjust as needed */
-  position: relative; /* for dropdown */
+  width: 280px; 
+  position: relative; 
   z-index: 9999;
 }
 

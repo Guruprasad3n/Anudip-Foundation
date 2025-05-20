@@ -29,7 +29,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  /* gap between chart icon and button */
 }
 
 
@@ -65,9 +64,7 @@
   display: inline-flex;
   align-items: center;
   position: relative;
-  /* for absolute dropdown */
   z-index: 9999;
-  /* high z-index to stay on top */
 }
 
 /* react-select menu adjustments */
@@ -78,7 +75,6 @@
   margin-top: 4px;
 }
 
-/* If you want to enforce portal usage for react-select dropdown, do it in JS (optional) */
 
 /* Table styles */
 .batch-table {
@@ -151,7 +147,6 @@
     width: 100%;
     max-width: 320px;
     position: relative;
-    /* keep relative for dropdown */
   }
 
   .switch-button {
