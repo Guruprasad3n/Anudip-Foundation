@@ -4,6 +4,7 @@ import IndiaMap from "./components/IndiaMap";
 import Navbar from "./components/Navbar";
 import "./App.css"
 import StateBatchWiseData from "./Pages/StateBatchWiseData";
+import MobilizationGallery from "./Pages/MobilizationGallery";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
     <Navbar/>
       <Routes>
         <Route path="/" element={<IndiaMap />} />
+        <Route path="/mobilization-gallery" element={<MobilizationGallery />} />
         <Route path="/state/:stateName" element={<StatePage />} />
         <Route path="/state/:stateName/batches" element={<StateBatchWiseData />} />
       </Routes>

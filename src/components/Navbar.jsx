@@ -12,14 +12,18 @@ function Navbar() {
   return (
     <div className="parent">
       {pathname === "/" ? (
+
+        <>
         <Link to="/project-wise-data">Project wise Data</Link>
+        </>
       ) : (
         <>
+          {/* /mobilization-gallery */}
           {pathname !== "/" && <Link to="/">Home</Link>}
 
-          {/* {pathname !== "/batch-wise-data" && (
-            <Link to="/batch-wise-data">Batch wise Data</Link>
-          )} */}
+          {pathname !== "/mobilization-gallery" && (
+            <Link to="/mobilization-gallery">Mobilization Gallery</Link>
+          )}
 
           {pathname !== "/project-wise-data" && (
             <Link to="/project-wise-data">Project wise Data</Link>
