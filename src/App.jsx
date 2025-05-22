@@ -8,16 +8,18 @@ import MobilizationGallery from "./Pages/MobilizationGallery";
 
 function App() {
   return (
- <>
-    <Navbar/>
-      <Routes>
-        <Route path="/" element={<IndiaMap />} />
-        <Route path="/mobilization-gallery" element={<MobilizationGallery />} />
-        <Route path="/state/:stateName" element={<StatePage />} />
-        <Route path="/state/:stateName/batches" element={<StateBatchWiseData />} />
-      </Routes>
- </>
- );
+    <>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<IndiaMap />} />
+          <Route path="/mobilization-gallery" element={<MobilizationGallery />} />
+          <Route path="/state/:stateName" element={<StatePage />} />
+          <Route path="/state/:stateName/batches" element={<StateBatchWiseData />} />
+        </Routes>
+      </div>
+    </>
+  );
 }
 
 export default App;

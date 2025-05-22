@@ -1,5 +1,8 @@
+/* svg{
+  object-fit: contain; 
+} */
+
 svg path {
-     fill: #0ab1b1;
      transition: .2s ease-in-out;
      cursor: pointer;
  }
@@ -7,9 +10,23 @@ svg path {
  svg path:hover {
      fill: #006e6e;
  }
-/* =================== */
  .map-home {
   position: relative;
+  /* width: 100%;
+  height: 100vh;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+
+  background-image: url("../Assets//backgroundjpg.jpg");
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 120vh; */
+  background-clip: content-box;
 
 }
 

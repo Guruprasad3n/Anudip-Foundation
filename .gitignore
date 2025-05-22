@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 ./src/Pages/BatchWiseData
+
+# Local Netlify folder
+.netlify

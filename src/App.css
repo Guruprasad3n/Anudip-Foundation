@@ -1,3 +1,15 @@
+/* Global reset for body and root element */
+body, #root {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensuring the content starts below the sticky navbar */
+.main-content {
+  padding-top: var(--navbar-height); /* Padding equal to navbar height */
+}
+
+/* Optional: Style for the map */
 .map-home {
   display: flex;
   justify-content: center;
