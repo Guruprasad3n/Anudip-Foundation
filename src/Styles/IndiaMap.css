@@ -1,16 +1,27 @@
-
-
 svg path {
-     fill: #0ab1b1;
-     transition: .2s ease-in-out;
-     cursor: pointer;
- }
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
 
- svg path:hover {
-     fill: #006e6e;
- }
+svg path:hover {
+  fill: #006e6e;
+}
+.map-home {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 
- 
+  background-image: url("../Assets//backgroundjpg.jpg");
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background-clip: content-box;
+}
+
 .state-tooltip {
   position: fixed;
   background-color: #333;
@@ -18,7 +29,5 @@ svg path {
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 14px;
-  /* pointer-events: none; */
   z-index: 999;
-  /* white-space: nowrap; */
 }
