@@ -1,3 +1,5 @@
+
+
 svg path {
      fill: #0ab1b1;
      transition: .2s ease-in-out;
@@ -7,12 +9,8 @@ svg path {
  svg path:hover {
      fill: #006e6e;
  }
-/* =================== */
- .map-home {
-  position: relative;
 
-}
-
+ 
 .state-tooltip {
   position: fixed;
   background-color: #333;
@@ -20,7 +18,7 @@ svg path {
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 14px;
-  pointer-events: none;
+  /* pointer-events: none; */
   z-index: 999;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
