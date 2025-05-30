@@ -14,7 +14,6 @@
   text-transform: capitalize;
 }
 
-/* NEW: Flex container for switch button + filter */
 .filter-switch-wrapper {
   display: flex;
   justify-content: space-between;
@@ -24,7 +23,6 @@
   flex-wrap: nowrap;
 }
 
-/* Button styles */
 .switch-button {
   display: inline-block;
   padding: 8px 14px;
@@ -41,11 +39,10 @@
   background-color: #088e8e;
 }
 
-/* Filter box container */
 .filter-box-container {
   flex-shrink: 0;
-  width: 280px; 
-  position: relative; 
+  width: 280px;
+  position: relative;
   z-index: 9999;
 }
 
@@ -62,6 +59,7 @@
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 0.6s ease-in-out;
+  overflow-x: auto;
 }
 
 .state-table th,
@@ -89,6 +87,66 @@
   background-color: #e9ecef;
 }
 
+.chart-icon {
+  cursor: pointer;
+  color: #007acc;
+  transition: transform 0.2s ease;
+}
+
+.chart-icon:hover {
+  transform: scale(1.2);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  width: 85%;
+  height: 85%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.charts {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.chart-wrapper {
+  flex: 1 1 45%;
+  min-width: 300px;
+  max-height: 400px;
+}
+
+/* Animations */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -120,13 +178,15 @@
   }
 }
 
-@media (max-width: 768px) {
-  .state-table th,
-  .state-table td {
-    padding: 10px;
-    font-size: 14px;
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .modal-content {
+    width: 95%;
+    height: 90%;
   }
+}
 
+@media (max-width: 768px) {
   .state-title {
     font-size: 1.5rem;
   }
@@ -141,64 +201,41 @@
     width: 100%;
     max-width: 320px;
   }
+
+  .state-table th,
+  .state-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .charts {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-wrapper {
+    width: 100%;
+    max-width: 95%;
+    height: auto;
+  }
 }
 
+@media (max-width: 480px) {
+  .chart-wrapper {
+    max-width: 100%;
+  }
 
+  .switch-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
 
-.chart-icon {
-  cursor: pointer;
-  color: #007acc;
-  transition: transform 0.2s ease;
-}
+  .chart-icon {
+    width: 20px;
+    height: 20px;
+  }
 
-.chart-icon:hover {
-  transform: scale(1.2);
-}
-
-/* Modal styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.modal-content {
-  width: 85%;
-  height: 85%;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  overflow-y: auto;
-  position: relative;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #333;
-}
-
-.charts {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.chart-wrapper {
-  flex: 1 1 45%;
-  min-width: 300px;
-  max-height: 400px;
+  .close-button {
+    font-size: 1.5rem;
+  }
 }

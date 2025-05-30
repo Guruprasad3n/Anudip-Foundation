@@ -1,29 +1,49 @@
 :root {
-  --navbar-height: 60px; /* Define the navbar height */
+  --navbar-height: 60px;
 }
 
-.parent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: var(--navbar-height); /* Use variable for height */
-  padding: 0 24px;
-  background-color: #197cdf;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.navbar {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  animation: slideDown 0.4s ease-in-out;
+}
+
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--navbar-height);
+  padding: 10px 20px;
+  width: 100vw;
+  margin: 0 auto;
 }
 
 .logo-container {
+  height: 100%;
+  max-width: 250px;
   display: flex;
   align-items: center;
 }
 
+.logo-link {
+  height: 100%;
+}
+
 .logo {
-  height: 40px;
+  height: 100%;
+  max-height: 50px;
   width: auto;
+  object-fit: contain;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .links-container {
@@ -32,197 +52,43 @@
 }
 
 .links-container a {
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #000;
   text-decoration: none;
   font-weight: 500;
   padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.2s ease;
 }
 
-.links-container a:hover {
-  background-color: #005fa3;
-  transform: translateY(-2px);
-}
-
+.links-container a:hover,
 .links-container a.active {
-  background-color: #005fa3;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 600px) {
-  .parent {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-  }
-
-  .links-container {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .links-container a {
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-
-  .logo {
-    height: 32px;
-  }
-}
-
-
-
-/* .parent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  padding: 0 24px;
   background-color: #197cdf;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  animation: slideDown 0.4s ease-in-out;
+  color: white;
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  height: 40px;
-  width: auto;
-}
-
-.links-container {
-  display: flex;
-  gap: 16px;
-}
-
-.links-container a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.links-container a:hover {
-  background-color: #005fa3;
-  transform: translateY(-2px);
-}
-
-.links-container a.active {
-  background-color: #005fa3;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 600px) {
-  .parent {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
+/* Mobile styles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
   }
 
   .links-container {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .links-container a {
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-
-  .logo {
-    height: 32px;
-  }
-}
- */
-
-
-/* .parent {
-  display: flex;
-  height: 60px;
-  gap: 16px;
-  padding: 16px 24px;
-  background-color: #007acc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  justify-content: flex-end;
-  align-items: center;
-  animation: slideDown 0.4s ease-in-out;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.parent a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.parent a:hover {
-  background-color: #005fa3;
-  transform: translateY(-2px);
-}
-
-.parent a.active {
-  background-color: #005fa3;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-@media (max-width: 600px) {
-  .parent {
-    flex-wrap: wrap;
-    justify-content: center;
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    align-items: center;
     gap: 12px;
+    padding: 12px 0;
+    display: none;
   }
 
-  .parent a {
-    font-size: 14px;
-    padding: 6px 10px;
+  .links-container.show {
+    display: flex;
   }
-} */
+}

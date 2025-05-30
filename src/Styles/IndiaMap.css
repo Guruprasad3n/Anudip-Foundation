@@ -6,28 +6,64 @@ svg path {
 svg path:hover {
   fill: #006e6e;
 }
-.map-home {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
 
-  background-image: url("../Assets//backgroundjpg.jpg");
-  display: inline-block;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  background-clip: content-box;
+.map-svg {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
+/* Tooltip styling */
 .state-tooltip {
   position: fixed;
   background-color: #333;
   color: white;
-  padding: 5px 10px;
+  padding: 0.5rem 0.75rem;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 0.875rem;
   z-index: 999;
+  max-width: 90vw;
+  word-wrap: break-word;
+}
+
+.container {
+  background-image: url("../Assets/backgroundjpg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.parent-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .map-svg {
+    max-width: 95%;
+  }
+
+  .state-tooltip {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .state-tooltip {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .parent-container {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
 }

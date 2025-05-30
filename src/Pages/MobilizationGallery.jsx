@@ -1,8 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../Styles/MobilizationGallery.css";
 
 function MobilizationGallery() {
   const [showModal, setShowModal] = useState(false);
+  const [employeeId, setEmployeeId] = useState("");
+  const [state, setState] = useState("");
+  const [message, setMessage] = useState("");
+  const [image, setImage] = useState(null);
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    const storedEntries =
+      JSON.parse(localStorage.getItem("mobilizationGallery")) || [];
+    setEntries(storedEntries);
+  }, []);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!employeeId || !state || !message || !image) {
+      alert("Please fill in all fields and upload an image.");
+      return;
+    }
+
+    const newEntry = {
+      id: Date.now(),
+      employeeId,
+      state,
+      message,
+      image,
+    };
+
+    const updatedEntries = [newEntry, ...entries];
+    setEntries(updatedEntries);
+    localStorage.setItem("mobilizationGallery", JSON.stringify(updatedEntries));
+
+    setEmployeeId("");
+    setState("");
+    setMessage("");
+    setImage(null);
+    setShowModal(false);
+  };
 
   return (
     <div className="gallery-page">
@@ -17,62 +65,56 @@ function MobilizationGallery() {
             <span className="close-modal" onClick={() => setShowModal(false)}>
               &times;
             </span>
-            <form className="gallery-form">
-              <input type="text" placeholder="Enter Your Employee Id" />
-              <select>
+            <form className="gallery-form" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Enter Your Employee Id"
+                value={employeeId}
+                onChange={(e) => setEmployeeId(e.target.value)}
+              />
+              <select value={state} onChange={(e) => setState(e.target.value)}>
                 <option value="">Select State</option>
                 <option value="Telangana">Telangana</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
               </select>
-              <input type="file" />
-              <textarea placeholder="Write your message here..."></textarea>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+              <textarea
+                placeholder="Write your message here..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              ></textarea>
               <input type="submit" value="Submit" />
             </form>
           </div>
         </div>
       )}
 
-     <div className="gallery-display-wrapper">
-  <div className="gallery-display">
-    <div className="gallery-card">
-      <img
-        src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-        alt="Sample Upload"
-      />
-      <p><strong>ID:</strong> EMP123</p>
-      <p><strong>State:</strong> Telangana</p>
-      <p><strong>Message:</strong> Sample description about the mobilization effort.</p>
-    </div>
-    <div className="gallery-card">
-      <img
-        src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-        alt="Sample Upload"
-      />
-      <p><strong>ID:</strong> EMP123</p>
-      <p><strong>State:</strong> Telangana</p>
-      <p><strong>Message:</strong> Sample description about the mobilization effort.</p>
-    </div>
-    <div className="gallery-card">
-      <img
-        src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-        alt="Sample Upload"
-      />
-      <p><strong>ID:</strong> EMP123</p>
-      <p><strong>State:</strong> Telangana</p>
-      <p><strong>Message:</strong> Sample description about the mobilization effort.</p>
-    </div>
-    <div className="gallery-card">
-      <img
-        src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-        alt="Sample Upload"
-      />
-      <p><strong>ID:</strong> EMP123</p>
-      <p><strong>State:</strong> Telangana</p>
-      <p><strong>Message:</strong> Sample description about the mobilization effort.</p>
-    </div>
-  </div>
-</div>
-
+      <div className="gallery-display-wrapper">
+        <div className="gallery-display">
+          {entries.length === 0 ? (
+            <p>No entries yet.</p>
+          ) : (
+            entries.map((entry) => (
+              <div className="gallery-card" key={entry.id}>
+                <img src={entry.image} alt="Upload" />
+                <p>
+                  <strong>ID:</strong> {entry.employeeId}
+                </p>
+                <p>
+                  <strong>State:</strong> {entry.state}
+                </p>
+                <p>
+                  <strong>Message:</strong> {entry.message}
+                </p>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
     </div>
   );
 }

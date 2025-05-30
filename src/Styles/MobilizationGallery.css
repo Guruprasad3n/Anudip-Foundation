@@ -8,44 +8,62 @@
     text-align: center;
     margin-bottom: 1rem;
     font-size: 2rem;
-    color: #333;
+    color: #2c3e50;
+    font-weight: bold;
 }
 
 .open-modal-btn {
     display: block;
     margin: 0 auto 2rem;
     padding: 0.6rem 1.2rem;
-    background-color: #0052cc;
+    background-color: #1976d2;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
 }
+
+.open-modal-btn:hover {
+    background-color: #1565c0;
+}
+
 .gallery-display-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    flex-wrap: wrap;
 }
 
 .gallery-display {
     display: grid;
-    grid-template-columns: repeat(2, 80vh);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .gallery-card {
     background: white;
     border: 1px solid #ddd;
     padding: 1rem;
-    border-radius: 8px;
-    width: 100%;
+    border-radius: 10px;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
 .gallery-card img {
     width: 100%;
-    object-fit: contain;
+    max-height: 200px;
+    object-fit: cover;
     border-radius: 6px;
     margin-bottom: 0.5rem;
 }
@@ -62,14 +80,15 @@
     align-items: center;
     z-index: 1000;
     backdrop-filter: blur(5px);
+    padding: 1rem;
 }
 
 .modal-content {
     background: #ffffff;
     padding: 2rem 2.5rem;
     border-radius: 16px;
-    width: 95%;
-    max-width: 550px;
+    width: 100%;
+    max-width: 500px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     position: relative;
     animation: fadeInScale 0.3s ease-in-out;
@@ -113,6 +132,7 @@
     border: 1px solid #ccc;
     font-size: 1rem;
     transition: border 0.3s ease;
+    background-color: #fdfdfd;
 }
 
 .gallery-form input[type="text"]:focus,
@@ -141,4 +161,23 @@
 
 .gallery-form input[type="submit"]:hover {
     background: linear-gradient(135deg, #218838, #1e7e34);
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .open-modal-btn {
+        width: 90%;
+        font-size: 1rem;
+    }
+
+    .gallery-display-wrapper {
+        padding: 1rem;
+    }
+
+    .gallery-display {
+        grid-template-columns: 1fr;
+    }
 }
