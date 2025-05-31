@@ -1,3 +1,4 @@
+/* Smooth hover and pointer */
 svg path {
   transition: 0.2s ease-in-out;
   cursor: pointer;
@@ -7,15 +8,136 @@ svg path:hover {
   fill: #006e6e;
 }
 
-.map-svg {
-  width: 100%;
-  max-width: 1200px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+/* Tooltip */
+.state-tooltip {
+  position: fixed;
+  background-color: #333;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  z-index: 999;
+  max-width: 90vw;
+  word-wrap: break-word;
+  pointer-events: none;
 }
 
-/* Tooltip styling */
+/* Main container with fixed background */
+/* .container {
+  background-image: url("../Assets/backgroundjpg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* Flex wrapper */
+.parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  /* max-width: 1400px; */
+
+  /* background */
+ background-image: url("../Assets/backgroundjpg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+
+/* SVG map settings */
+.map-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.map-svg {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  aspect-ratio: 600 / 2000;
+}
+
+/* Right-side buttons */
+.button-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .parent-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .map-svg {
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-svg {
+    max-height: 60vh;
+  }
+
+  .state-tooltip {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-svg {
+    max-height: 50vh;
+  }
+
+  .state-tooltip {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .button-wrapper {
+    align-items: center;
+  }
+}
+
+
+/* svg path {
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+svg path:hover {
+  fill: #006e6e;
+}
+
+.map-svg {
+  width: auto;
+  height: 85vh;
+  max-height: 90vh;
+  aspect-ratio: 600 / 2000;
+  display: block;
+}
 .state-tooltip {
   position: fixed;
   background-color: #333;
@@ -35,19 +157,55 @@ svg path:hover {
   background-size: cover;
   background-attachment: fixed;
 }
+
+.map-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  max-height: 90vh;
+  overflow: auto;
+}
+.map-container {
+  overflow-y: auto;
+}
+
 .parent-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 100%;
+  align-items: center;
   padding: 1rem;
+  gap: 2rem;
+  flex-wrap: wrap;
   box-sizing: border-box;
 }
 
-/* Responsive tweaks */
+.map-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 700px;
+}
+
 @media (max-width: 768px) {
+  .parent-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .map-wrapper {
+    max-width: 100%;
+  }
+
   .map-svg {
-    max-width: 95%;
+    max-height: 70vh;
+  }
+
+  .button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .state-tooltip {
@@ -57,13 +215,15 @@ svg path:hover {
 }
 
 @media (max-width: 480px) {
+  .map-svg {
+    max-height: 60vh;
+  }
+
   .state-tooltip {
     font-size: 0.7rem;
     padding: 0.3rem 0.5rem;
   }
-
-  .parent-container {
-    flex-direction: column;
-    padding: 0.5rem;
-  }
 }
+.map-wrapper {
+  max-width: 100%;
+} */
