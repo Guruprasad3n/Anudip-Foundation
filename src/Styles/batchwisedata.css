@@ -163,7 +163,6 @@
   margin-top: 20px;
 }
 
-/* Animations */
 @keyframes fadeInDown {
   from {
     opacity: 0;

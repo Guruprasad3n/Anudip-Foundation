@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { studentsData } from "../data/data";
 import FilterBox from "../components/FilterBox";
 import { Bar } from "react-chartjs-2";
+import { FaChartBar } from "react-icons/fa";
 import {
   Chart as ChartJS,
   BarElement,
@@ -10,7 +11,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { BarChart2 } from "lucide-react";
 import "../Styles/projectwisedata.css";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
@@ -84,12 +84,15 @@ function ProjectWiseData() {
   };
 
   return (
-    <div className="project-container">
-      <h1>Project Wise Data</h1>
+    <div className={`project-container ${showChart ? "blurred" : ""}`}>
+      <h1 className="project-title">Project Wise Data</h1>
       <div className="project-header">
-        <button className="chart-btn" onClick={() => setShowChart(true)}>
-          <BarChart2 size={24} />
-        </button>
+        <FaChartBar
+          onClick={() => setShowChart(true)}
+          size={22}
+          className="chart-icon"
+          title="View Charts"
+        />
         <div className="filter-controls">
           <div className="filter-box">
             <label>Select RM:</label>
@@ -157,10 +160,7 @@ function ProjectWiseData() {
       )}
       {showChart && (
         <div className="modal-overlay" onClick={() => setShowChart(false)}>
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
-          >
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={() => setShowChart(false)}>
               &times;
             </button>

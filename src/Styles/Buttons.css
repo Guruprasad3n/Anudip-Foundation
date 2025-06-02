@@ -2,24 +2,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0 15px;
-  box-sizing: border-box;
+  justify-content: center;
+  padding: 10px 15px;
   width: 100%;
+  gap: 1rem;
+  /* border: 1px solid #00b3b3; */
 }
 
-.logo-container {
+.parent-logo-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  /* border: 1px solid #00b3b3; */
 }
 
-.logo {
+.logo-button {
   width: 100%;
   max-width: 500px;
   height: auto;
   margin-bottom: 30px;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 a {
