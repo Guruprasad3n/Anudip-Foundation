@@ -155,22 +155,6 @@ function ProjectWiseData() {
           </tbody>
         </table>
       )}
-
-      {/* {showChart && (
-        <div className="modal">
-          <div className="modal-content">
-            <button className="close-btn" onClick={() => setShowChart(false)}>
-              &times;
-            </button>
-            <h2>Project Summary Chart</h2>
-            <div className="modal-filter">
-              <label>Select RM for Chart:</label>
-              <FilterBox options={uniqueRMs} onChange={setSelectedRM} />
-            </div>
-            <Bar data={chartData} />
-          </div>
-        </div>
-      )} */}
       {showChart && (
         <div className="modal-overlay" onClick={() => setShowChart(false)}>
           <div

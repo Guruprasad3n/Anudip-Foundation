@@ -2,17 +2,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 0 15px; 
+  justify-content: flex-start;
+  padding: 0 15px;
   box-sizing: border-box;
+  width: 100%;
+}
+
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .logo {
-  width: 320px;       
-  max-width: 90vw;     
+  width: 100%;
+  max-width: 500px;
   height: auto;
-  margin-bottom: 40px; 
+  margin-bottom: 30px;
+  display: block;
 }
 
 a {
@@ -23,7 +30,7 @@ a {
 .buttons-wrapper {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -67,37 +74,41 @@ a {
   background-color: #ffffff;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
+  .logo {
+    width: 70%;
+    margin-bottom: 25px;
+  }
+
   .buttons-wrapper {
     gap: 15px;
-    max-width: 540px; 
+    max-width: 540px;
   }
+
   .custom-button {
     min-width: 180px;
     font-size: 18px;
     padding: 12px 20px;
   }
- .logo {
-    width: 240px;
-    margin-bottom: 30px;
-  }
 }
 
 @media (max-width: 480px) {
+  .logo {
+    width: 100%;
+    max-width: 95vw;
+    margin-bottom: 20px;
+  }
+
   .buttons-wrapper {
     flex-direction: column;
     gap: 15px;
     max-width: 320px;
   }
+
   .custom-button {
     min-width: 100%;
     font-size: 16px;
     padding: 12px 15px;
     border-radius: 12px;
-  }
- .logo {
-    width: 180px;
-    margin-bottom: 25px;
   }
 }
