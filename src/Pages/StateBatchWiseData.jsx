@@ -102,20 +102,26 @@ function StateBatchWiseData() {
   const batchLabels = Object.keys(batchSummary);
   const enrolledData = batchLabels.map((code) => batchSummary[code].enrolled);
   const placedData = batchLabels.map((code) => batchSummary[code].placed);
+  const trainedData = batchLabels.map((code)=>batchSummary[code].trained)
 
   const barData = {
     labels: batchLabels,
     datasets: [
       {
-        label: "Enrolled",
-        data: enrolledData,
-        backgroundColor: "#007acc",
-      },
-      {
-        label: "Placed",
-        data: placedData,
-        backgroundColor: "#00b894",
-      },
+      label: "Enrolled",
+      data: enrolledData,
+      backgroundColor: "#007acc",
+    },
+    {
+      label: "Trained",
+      data: trainedData,
+      backgroundColor: "#00cec9",
+    },
+    {
+      label: "Placed",
+      data: placedData,
+      backgroundColor: "#2ecc71",
+    },
     ],
   };
 
