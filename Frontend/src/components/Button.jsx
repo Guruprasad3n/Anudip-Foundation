@@ -10,11 +10,11 @@ const Buttons = () => {
         <img className="logo-button" src={logo} alt="Anudip Logo" />
       </div>
       <div className="buttons-wrapper">
-        <Link to="/project-wise-data">
+        <Link to="/rm-wise-data">
           <button className="custom-button"> Project wise Data </button>
         </Link>
-        <Link to="/mobilization-gallery">
-          <button className="custom-button"> Mobilization Gallery</button>
+        <Link to="/pmo-wise-data">
+          <button className="custom-button"> PMO wise Data</button>
         </Link>
       </div>
     </div>
