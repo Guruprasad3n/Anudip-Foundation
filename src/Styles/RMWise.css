@@ -1,0 +1,135 @@
+.rmwise-container {
+  padding: 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdfdfd;
+}
+
+.rmwise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.rmwise-title {
+  flex: 1;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #0a3d62;
+  margin: 0;
+}
+
+.rmwise-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 300px;
+}
+
+.rmwise-select {
+  min-width: 200px;
+  z-index: 999;
+}
+
+.table-wrapper {
+  max-height: 500px;
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.rmwise-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+  font-size: 13px;
+  background-color: white;
+}
+
+.rmwise-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #549ce4;
+  color: white;
+  padding: 8px 10px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.rmwise-table th:hover {
+  background-color: #417bc2;
+}
+
+.rmwise-table td {
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.q1-cell { background-color: #e3f2fd; color: #0d47a1; }
+.q2-cell { background-color: #e8f5e9; color: #1b5e20; }
+.q3-cell { background-color: #fff3e0; color: #e65100; }
+.q4-cell { background-color: #fce4ec; color: #880e4f; }
+
+.rmwise-table tbody tr:hover {
+  background-color: #f0f8ff;
+}
+
+.etp-cell {
+  padding: 0;
+}
+
+.etp-box {
+  /* padding: 6px 12px; */
+  /* background-color: #f7f9fa; */
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin: 4px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.fade-in {
+  animation: fadeSlideIn 0.3s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .rmwise-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rmwise-filters {
+    justify-content: flex-start;
+  }
+
+  .rmwise-select {
+    width: 100%;
+  }
+}

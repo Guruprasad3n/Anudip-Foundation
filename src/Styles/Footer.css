@@ -1,0 +1,30 @@
+.footer {
+    background-color: #dcdcdc;
+    padding: 40px 20px;
+    font-family: sans-serif;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.footer-left {
+    max-width: 300px;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.social-icons svg {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+}

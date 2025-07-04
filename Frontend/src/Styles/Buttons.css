@@ -1,0 +1,119 @@
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  width: 100%;
+  gap: 1rem;
+  /* border: 1px solid #00b3b3; */
+}
+
+.parent-logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid #00b3b3; */
+}
+
+.logo-button {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: #00b3b3;
+  text-decoration: none;
+}
+
+.buttons-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.custom-button {
+  position: relative;
+  background-color: #ffffff;
+  color: #00b3b3;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 15px 25px;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  min-width: 220px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.custom-button:hover,
+.custom-button:focus {
+  background-color: #00b3b3;
+  color: #ffffff;
+  outline: none;
+}
+
+.custom-button::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 10px;
+  height: 60%;
+  width: 3px;
+  background-color: #00b3b3;
+  transition: background-color 0.25s ease;
+}
+
+.custom-button:hover::after,
+.custom-button:focus::after {
+  background-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 70%;
+    margin-bottom: 25px;
+  }
+
+  .buttons-wrapper {
+    gap: 15px;
+    max-width: 540px;
+  }
+
+  .custom-button {
+    min-width: 180px;
+    font-size: 18px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 100%;
+    max-width: 95vw;
+    margin-bottom: 20px;
+  }
+
+  .buttons-wrapper {
+    flex-direction: column;
+    gap: 15px;
+    max-width: 320px;
+  }
+
+  .custom-button {
+    min-width: 100%;
+    font-size: 16px;
+    padding: 12px 15px;
+    border-radius: 12px;
+  }
+}

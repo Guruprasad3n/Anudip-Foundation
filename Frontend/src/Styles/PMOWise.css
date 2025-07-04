@@ -1,0 +1,253 @@
+.pmo-container {
+  padding: 30px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+.pmo-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #0a3d62;
+  font-weight: 700;
+  margin-bottom: 28px;
+  animation: fadeInDown 0.5s ease-in-out;
+  text-transform: capitalize;
+  letter-spacing: 0.4px;
+}
+
+.pmo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.pmo-filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
+.pmo-select {
+  min-width: 220px;
+  z-index: 9999;
+}
+
+/* Table Styles */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  background-color: white;
+}
+
+.pmo-table {
+  width: 100%;
+  min-width: 960px;
+  border-collapse: collapse;
+  font-size: 14px;
+  background-color: white;
+}
+
+.pmo-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #007acc;
+  color: white;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #d9e2ec;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.pmo-table td {
+  padding: 10px 14px;
+  border: 1px solid #e1e7ec;
+  text-align: center;
+  text-transform: capitalize;
+  white-space: nowrap;
+  color: #2f3e4d;
+}
+
+.pmo-table tbody tr:hover {
+  background-color: #e6f4ff;
+  transition: background-color 0.3s ease;
+}
+
+.pmo-loading {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pmo-title {
+    font-size: 1.7rem;
+  }
+
+  .pmo-select {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pmo-title {
+    font-size: 1.5rem;
+  }
+
+  .pmo-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pmo-filters {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .pmo-select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .pmo-table th,
+  .pmo-table td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pmo-title {
+    font-size: 1.3rem;
+  }
+
+  .pmo-select {
+    font-size: 14px;
+  }
+
+  .pmo-table {
+    font-size: 12px;
+  }
+
+  .pmo-table td,
+  .pmo-table th {
+    padding: 8px;
+  }
+}
+
+
+
+/* .pmo-container {
+    padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pmo-title {
+    text-align: center;
+    font-size: 24px;
+    color: #0a3d62;
+    font-weight: 600;
+    margin-bottom: 20px;
+    flex: 1;
+    font-weight: bold;
+}
+
+.table-wrapper {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    overflow-x: auto;
+}
+
+.pmo-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    font-size: 13px;
+    background-color: white;
+    table-layout: auto;
+}
+
+.pmo-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #549ce4;
+    color: white;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.pmo-table td {
+    padding: 6px 10px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+.pmo-table tbody tr:hover {
+    background-color: #f4f9ff;
+}
+
+.pmo-loading {
+    text-align: center;
+    color: #888;
+}
+
+.pmo-table tbody td {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.pmo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.pmo-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    min-width: 300px;
+}
+
+.pmo-select {
+    min-width: 200px;
+    z-index: 999;
+} */
