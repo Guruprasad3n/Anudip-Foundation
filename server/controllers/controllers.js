@@ -22,7 +22,6 @@ const sendError = (res, message, err = null) => {
 //   }
 // };
 
-const { Parser } = require('json2csv');
 
 const exportToCSV = (res, rawData, filenamePrefix = 'report') => {
   try {
