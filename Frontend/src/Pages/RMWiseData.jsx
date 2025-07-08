@@ -31,7 +31,7 @@ const RMWiseData = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`${__API_URL__}/api/rm`);
+      const res = await axios.get(`https://anaudip-foundation.onrender.com/api/rm`);
       const data = res.data.data.map((item) => ({
         ...item,
         quarterTargets: JSON.parse(item.quarterTargets),
@@ -86,7 +86,7 @@ const RMWiseData = () => {
 
   const downloadFile = async (type) => {
     try {
-      const res = await axios.get(`${__API_URL__}/api/rm?exportType=${type}`, {
+      const res = await axios.get(`https://anaudip-foundation.onrender.com/api/rm?exportType=${type}`, {
         responseType: "blob",
       });
       const url = window.URL.createObjectURL(new Blob([res.data]));
@@ -282,7 +282,7 @@ export default RMWiseData;
 
 //   const fetchData = async () => {
 //     try {
-//       const res = await axios.get("${__API_URL__}/api/rm");
+//       const res = await axios.get("https://anaudip-foundation.onrender.com/api/rm");
 //       const data = res.data.data.map((item) => ({
 //         ...item,
 //         quarterTargets: JSON.parse(item.quarterTargets),
@@ -337,7 +337,7 @@ export default RMWiseData;
 
 //   const downloadFile = async (type) => {
 //     try {
-//       const res = await axios.get(`${__API_URL__}/api/rm?exportType=${type}`, {
+//       const res = await axios.get(`https://anaudip-foundation.onrender.com/api/rm?exportType=${type}`, {
 //         responseType: "blob",
 //       });
 //       const url = window.URL.createObjectURL(new Blob([res.data]));

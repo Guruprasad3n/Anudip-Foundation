@@ -19,7 +19,7 @@ function IndiaMap() {
     if (stateDataMap[key]) return;
 
     try {
-      const res = await fetch(`${__API_URL__}/api/state/${key}/centers`);
+      const res = await fetch(`https://anaudip-foundation.onrender.com/api/state/${key}/centers`);
       const result = await res.json();
       if (result.success) {
         setStateDataMap((prev) => ({

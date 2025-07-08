@@ -31,7 +31,7 @@ const PMOWise = () => {
 
     const fetchPMOData = async () => {
         try {
-            const res = await axios.get(`${__API_URL__}/api/pmo`);
+            const res = await axios.get(`https://anaudip-foundation.onrender.com/api/pmo`);
             setPmoData(res.data.data);
             setFilteredData(res.data.data);
 
@@ -86,7 +86,7 @@ const PMOWise = () => {
 
     const downloadReport = async (type) => {
         try {
-            const url = `${__API_URL__}/api/pmo?exportType=${type}`;
+            const url = `https://anaudip-foundation.onrender.com/api/pmo?exportType=${type}`;
             const response = await axios.get(url, { responseType: "blob" });
             const fileType = type === "pdf" ? "application/pdf" : "text/csv";
             const fileExt = type === "pdf" ? "pdf" : "csv";
@@ -237,7 +237,7 @@ export default PMOWise;
 
 //     const fetchPMOData = async () => {
 //         try {
-//             const res = await axios.get("${__API_URL__}/api/pmo");
+//             const res = await axios.get("https://anaudip-foundation.onrender.com/api/pmo");
 //             setPmoData(res.data.data);
 //             setFilteredData(res.data.data);
 
@@ -292,7 +292,7 @@ export default PMOWise;
 
 //     const downloadReport = async (type) => {
 //         try {
-//             const url = `${__API_URL__}/api/pmo?exportType=${type}`;
+//             const url = `https://anaudip-foundation.onrender.com/api/pmo?exportType=${type}`;
 //             const response = await axios.get(url, { responseType: 'blob' });
 //             const fileType = type === 'pdf' ? 'application/pdf' : 'text/csv';
 //             const fileExt = type === 'pdf' ? 'pdf' : 'csv';

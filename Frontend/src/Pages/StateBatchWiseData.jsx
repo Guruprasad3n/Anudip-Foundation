@@ -49,7 +49,7 @@ function StateBatchWiseData() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${__API_URL__}/api/state/${stateName}/batches`);
+        const res = await axios.get(`https://anaudip-foundation.onrender.com/api/state/${stateName}/batches`);
         const data = res.data.data;
         setBatchData(data);
         setFilteredData(data);
@@ -75,7 +75,7 @@ function StateBatchWiseData() {
 
   const handleExport = async (type) => {
     try {
-      window.open(`${__API_URL__}/api/state/${stateName}/batches?exportType=${type}`, '_blank');
+      window.open(`https://anaudip-foundation.onrender.com/api/state/${stateName}/batches?exportType=${type}`, '_blank');
     } catch (error) {
       console.error(`Failed to export ${type}:`, error);
     }
