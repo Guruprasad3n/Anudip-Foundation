@@ -6,6 +6,10 @@ import "../Styles/PMOWise.css";
 import Loader from "../components/Loader";
 import { ThemeContext } from "../ThemeContext";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
+console.log("URL", BASE_URL)
+
 const PMOWise = () => {
     const [pmoData, setPmoData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -18,13 +22,16 @@ const PMOWise = () => {
 
     const { theme } = useContext(ThemeContext);
 
+    // console.log("API", __API_URL__)
+
+
     useEffect(() => {
         fetchPMOData();
     }, []);
 
     const fetchPMOData = async () => {
         try {
-            const res = await axios.get("https://anaudip-etp.onrender.com/api/pmo");
+            const res = await axios.get(`${__API_URL__}/api/pmo`);
             setPmoData(res.data.data);
             setFilteredData(res.data.data);
 
@@ -79,7 +86,7 @@ const PMOWise = () => {
 
     const downloadReport = async (type) => {
         try {
-            const url = `https://anaudip-etp.onrender.com/api/pmo?exportType=${type}`;
+            const url = `${__API_URL__}/api/pmo?exportType=${type}`;
             const response = await axios.get(url, { responseType: "blob" });
             const fileType = type === "pdf" ? "application/pdf" : "text/csv";
             const fileExt = type === "pdf" ? "pdf" : "csv";
@@ -230,7 +237,7 @@ export default PMOWise;
 
 //     const fetchPMOData = async () => {
 //         try {
-//             const res = await axios.get("https://anaudip-etp.onrender.com/api/pmo");
+//             const res = await axios.get("${__API_URL__}/api/pmo");
 //             setPmoData(res.data.data);
 //             setFilteredData(res.data.data);
 
@@ -285,7 +292,7 @@ export default PMOWise;
 
 //     const downloadReport = async (type) => {
 //         try {
-//             const url = `https://anaudip-etp.onrender.com/api/pmo?exportType=${type}`;
+//             const url = `${__API_URL__}/api/pmo?exportType=${type}`;
 //             const response = await axios.get(url, { responseType: 'blob' });
 //             const fileType = type === 'pdf' ? 'application/pdf' : 'text/csv';
 //             const fileExt = type === 'pdf' ? 'pdf' : 'csv';

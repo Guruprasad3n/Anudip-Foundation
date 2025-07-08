@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "../Styles/IndiaMap.css";
 import Buttons from "./Button";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 function IndiaMap() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function IndiaMap() {
     if (stateDataMap[key]) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/api/state/${key}/centers`);
+      const res = await fetch(`${__API_URL__}/api/state/${key}/centers`);
       const result = await res.json();
       if (result.success) {
         setStateDataMap((prev) => ({

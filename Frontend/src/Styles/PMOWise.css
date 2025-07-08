@@ -39,7 +39,6 @@
   z-index: 9999;
 }
 
-/* Table Styles */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -125,7 +124,6 @@
   }
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .pmo-title {
     font-size: 1.7rem;

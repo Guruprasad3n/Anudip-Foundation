@@ -23,6 +23,8 @@ Chart.register(
   Legend
 );
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 function StatePage() {
   const { stateName } = useParams();
   const [centerData, setCenterData] = useState([]);
@@ -36,7 +38,7 @@ function StatePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`https://anaudip-etp.onrender.com/api/state/${stateName}/centers`);
+        const res = await fetch(`${__API_URL__}/api/state/${stateName}/centers`);
         const result = await res.json();
         if (result.success) {
           setCenterData(result.data);
@@ -52,7 +54,7 @@ function StatePage() {
 
   const handleExport = async (type) => {
     try {
-      window.open(`https://anaudip-etp.onrender.com/api/state/${stateName}/centers?exportType=${type}`, '_blank');
+      window.open(`${__API_URL__}/api/state/${stateName}/centers?exportType=${type}`, '_blank');
     } catch (error) {
       console.error(`Failed to export ${type}:`, error);
     }

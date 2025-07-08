@@ -4,12 +4,6 @@
   background-color: #f9f9f9;
   min-height: 100vh;
 }
-/* .project-container.blurred {
-  filter: blur(2px);
-  pointer-events: none;
-  user-select: none;
-} */
-
 .project-title {
   text-align: center;
   color: #333;

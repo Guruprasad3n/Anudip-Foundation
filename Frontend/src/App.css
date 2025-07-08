@@ -1,50 +1,6 @@
-/* :root {
-  --bg-color: #ffffff;
-  --text-color: #1a1a1a;
-  --card-bg: #f5f5f5;
-  --primary-color: #0066cc;
-}
-
-[data-theme="dark"] {
-  --bg-color: #1a1a1a;
-  --text-color: #ffffff;
-  --card-bg: #2c2c2c;
-  --primary-color: #4dabf7;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-} */
-/* 
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-}
-
-[data-theme="dark"] {
-  --bg-color: #121212;
-  --text-color: #ffffff;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-} */
-
-
-
-/* .map-home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-
-/* App.css */
-
-body, html, #root {
+body,
+html,
+#root {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -58,15 +14,4 @@ body, html, #root {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: calc(100vh - var(--navbar-height, 60px)); */
-  /* padding: 20px; */
-  /* box-sizing: border-box; */
 }
-
-/* @media (max-width: 768px) {
-  .map-home {
-    flex-direction: column;
-    padding: 10px;
-    height: auto;
-  }
-} */

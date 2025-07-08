@@ -1,8 +1,10 @@
 .footer {
-    background-color: #dcdcdc;
+    background-color: var(--card-bg);
+    color: var(--text-color);
     padding: 40px 20px;
     font-family: sans-serif;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-left {
@@ -16,15 +18,20 @@
 
 .social-icons svg {
     font-size: 20px;
-    margin-right: 10px;
-    cursor: pointer;
+    margin-right: 15px;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
 }
 
 .footer-bottom {
     margin-top: 40px;
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-    font-size: 13px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    font-size: 14px;
     display: flex;
     justify-content: space-between;
 }

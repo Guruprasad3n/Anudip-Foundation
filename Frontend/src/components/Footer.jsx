@@ -19,7 +19,7 @@ function Footer() {
             </div>
             <hr />
             <div className="footer-bottom">
-                <p>© Copyright 2025. Anudip Foundation for Social Welfare</p>
+                <p>© Copyright {new Date().getFullYear()}. Anudip Foundation for Social Welfare</p>
                 <div>
                     <a href="#">Privacy Policy</a> | <a href="#">Terms and Conditions</a>
                 </div>

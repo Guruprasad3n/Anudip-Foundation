@@ -14,8 +14,6 @@
   animation: fadeInDown 0.5s ease-in-out;
   text-transform: capitalize;
 }
-
-/* Header & Filter */
 .project-header {
   display: flex;
   justify-content: space-between;
@@ -74,7 +72,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* Sort Icon & Dropdown */
 .project-table th .sort-icon {
   margin-left: 6px;
   font-size: 12px;
@@ -109,7 +106,6 @@
   background-color: #f0f0f0;
 }
 
-/* Modal */
 .chart-overlay {
   position: fixed;
   inset: 0;
@@ -156,13 +152,11 @@
   color: #d63031;
 }
 
-/* Chart area */
 .bar-container {
   margin-top: 20px;
   max-height: 400px;
 }
 
-/* Animations */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -174,7 +168,6 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
   .project-title {
     font-size: 1.7rem;
@@ -227,186 +220,3 @@
     font-size: 20px;
   }
 }
-
-
-
-/* .project-container {
-    padding: 30px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.project-title {
-    text-align: center;
-    font-size: 24px;
-    color: #0a3d62;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.table-wrapper {
-    max-height: 500px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    overflow-x: auto;
-}
-
-.project-table {
-    width: 100%;
-    min-width: 1000px;
-    border-collapse: collapse;
-    font-size: 13px;
-    background-color: white;
-    table-layout: auto;
-}
-
-.project-table thead th {
-    position: sticky;
-    top: 0;
-    background-color: #549ce4;
-    color: white;
-    border-bottom: 1px solid #ccc;
-    padding: 8px 10px;
-    text-align: center;
-    font-weight: 600;
-    white-space: nowrap;
-    z-index: 3;
-    position: relative;
-    cursor: pointer;
-}
-
-.project-table th .sort-icon {
-    margin-left: 5px;
-    cursor: pointer;
-    font-size: 10px;
-    vertical-align: middle;
-}
-
-.sort-options {
-    position: absolute;
-    top: 100%;
-    right: 10px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    display: none;
-}
-
-.show-options {
-    display: block;
-}
-
-.sort-options div {
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.sort-options div:hover {
-    background-color: #f0f0f0;
-}
-
-.project-table td {
-    padding: 6px 10px;
-    border: 1px solid #e2e8f0;
-    text-align: center;
-    white-space: nowrap;
-}
-
-.project-table tbody tr:hover {
-    background-color: #f4f9ff;
-}
-
-.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.project-select {
-    width: 300px;
-    z-index: 999;
-}
-
-
-.chart-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 999;
-}
-
-.chart-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 85%;
-    max-width: 1200px;
-    max-height: 90%;
-    overflow-y: auto;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 1000;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-}
-
-.modal-title {
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #0a3d62;
-}
-
-.bar-container {
-    margin-top: 20px;
-    max-height: 400px;
-}
-
-.chart-modal {
-    width: 85%;
-    max-width: 1100px;
-    background: white;
-    padding: 30px;
-    position: relative;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 10px;
-    outline: none;
-    max-height: 85vh;
-    overflow-y: auto;
-}
-
-.chart-overlay {
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #d63031;
-}
- */

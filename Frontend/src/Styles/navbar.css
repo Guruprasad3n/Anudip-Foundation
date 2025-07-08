@@ -1,28 +1,12 @@
-:root {
-  --navbar-height: 60px;
-  --nav-bg: #ffffff;
-  --nav-link-color: #000000;
-  --nav-hover-bg: #197cdf;
-  --nav-hover-text: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --nav-bg: #121212;
-    --nav-link-color: #f0f0f0;
-    --nav-hover-bg: #444;
-    --nav-hover-text: #fff;
-  }
-}
-
 .navbar {
-  background-color: var(--nav-bg);
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  --navbar-height: 60px;
+  background-color: var(--header-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .navbar-inner {
@@ -53,7 +37,7 @@
   cursor: pointer;
   display: none;
   z-index: 1001;
-  color: var(--nav-link-color);
+  color: var(--text-color);
   transition: color 0.3s ease;
 }
 
@@ -66,21 +50,20 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--nav-link-color);
+  color: var(--text-color);
   text-decoration: none;
   font-weight: 500;
   padding: 8px 14px;
   border-radius: 6px;
-  transition: 0.3s ease all;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .links-container a:hover,
 .links-container a.active {
-  background-color: var(--nav-hover-bg);
-  color: var(--nav-hover-text);
+  background-color: var(--primary-color);
+  color: var(--card-bg);
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -91,7 +74,8 @@
     top: var(--navbar-height);
     left: 0;
     right: 0;
-    background: var(--nav-bg);
+    background-color: var(--header-color);
+    border-top: 1px solid var(--border-color);
     flex-direction: column;
     gap: 12px;
     padding: 12px 0;
