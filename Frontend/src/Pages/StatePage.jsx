@@ -152,7 +152,7 @@ function StatePage() {
       <h1 className="state-title">{stateName} - Center Summary</h1>
 
       <div className="filter-switch-wrapper">
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div  className="icon-export-group">
           <FaChartBar
             size={22}
             className="chart-icon"
@@ -190,7 +190,6 @@ function StatePage() {
 
       {loading ? (
         <Loader />
-        // <p className="loading-text">Loading center data...</p>
       ) : (
         <>
           <table className="state-table">

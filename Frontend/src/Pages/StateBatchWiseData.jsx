@@ -131,6 +131,7 @@ function StateBatchWiseData() {
     ],
   };
 
+
   return (
     <div className="batch-container">
       <h1 className="batch-title">{stateName} - Batch-wise Summary</h1>
@@ -164,7 +165,6 @@ function StateBatchWiseData() {
 
       {loading ? (
         <Loader />
-        // <p className="loading-text">Loading batch data...</p>
       ) : (
         <>
           <table className="batch-table">

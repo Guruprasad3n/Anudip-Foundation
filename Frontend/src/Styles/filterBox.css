@@ -7,6 +7,21 @@
   flex-shrink: 0;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* .filter-box-wrapper {
+  width: 300px;
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 0.4s ease-in;
+  margin: 0;
+  flex-shrink: 0;
+}
+
 .react-select__control {
   border-color: #007acc;
   box-shadow: none;
@@ -37,4 +52,4 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
+} */

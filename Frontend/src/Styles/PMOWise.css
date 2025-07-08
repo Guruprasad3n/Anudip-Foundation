@@ -1,14 +1,15 @@
 .pmo-container {
   padding: 30px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f6f9;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   min-height: 100vh;
 }
 
 .pmo-title {
   text-align: center;
   font-size: 2rem;
-  color: #0a3d62;
+  color: var(--text-color);
   font-weight: 700;
   margin-bottom: 28px;
   animation: fadeInDown 0.5s ease-in-out;
@@ -44,7 +45,7 @@
   overflow-x: auto;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  background-color: white;
+  background-color: var(--bg-color);
 }
 
 .pmo-table {
@@ -52,14 +53,15 @@
   min-width: 960px;
   border-collapse: collapse;
   font-size: 14px;
-  background-color: white;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .pmo-table thead th {
   position: sticky;
   top: 0;
-  background-color: #007acc;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   padding: 12px 16px;
   font-weight: 600;
   border-bottom: 1px solid #d9e2ec;
@@ -75,27 +77,48 @@
   text-align: center;
   text-transform: capitalize;
   white-space: nowrap;
-  color: #2f3e4d;
+  color: var(--text-color);
 }
 
 .pmo-table tbody tr:hover {
-  background-color: #e6f4ff;
+  background-color: rgba(0, 123, 255, 0.1);
   transition: background-color 0.3s ease;
 }
 
 .pmo-loading {
   text-align: center;
-  color: #888;
+  color: var(--text-color);
   font-size: 16px;
   padding: 20px;
 }
 
-/* Animations */
+.pmo-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-download {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-download:hover {
+  background-color: #005bb5;
+}
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
     transform: translateY(-15px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -124,6 +147,11 @@
   }
 
   .pmo-filters {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .pmo-buttons {
     justify-content: center;
     width: 100%;
   }
@@ -158,96 +186,3 @@
     padding: 8px;
   }
 }
-
-
-
-/* .pmo-container {
-    padding: 30px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.pmo-title {
-    text-align: center;
-    font-size: 24px;
-    color: #0a3d62;
-    font-weight: 600;
-    margin-bottom: 20px;
-    flex: 1;
-    font-weight: bold;
-}
-
-.table-wrapper {
-    max-height: 500px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    overflow-x: auto;
-}
-
-.pmo-table {
-    width: 100%;
-    min-width: 900px;
-    border-collapse: collapse;
-    font-size: 13px;
-    background-color: white;
-    table-layout: auto;
-}
-
-.pmo-table thead th {
-    position: sticky;
-    top: 0;
-    background-color: #549ce4;
-    color: white;
-    border-bottom: 1px solid #ccc;
-    padding: 8px 10px;
-    text-align: center;
-    font-weight: 600;
-    white-space: nowrap;
-    z-index: 3;
-    cursor: pointer;
-}
-
-.pmo-table td {
-    padding: 6px 10px;
-    border: 1px solid #e2e8f0;
-    text-align: center;
-    white-space: nowrap;
-    text-transform: capitalize;
-}
-
-.pmo-table tbody tr:hover {
-    background-color: #f4f9ff;
-}
-
-.pmo-loading {
-    text-align: center;
-    color: #888;
-}
-
-.pmo-table tbody td {
-    text-align: center;
-    text-transform: capitalize;
-}
-
-.pmo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.pmo-filters {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    min-width: 300px;
-}
-
-.pmo-select {
-    min-width: 200px;
-    z-index: 999;
-} */
