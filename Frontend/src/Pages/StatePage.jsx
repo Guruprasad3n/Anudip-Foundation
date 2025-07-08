@@ -152,7 +152,7 @@ function StatePage() {
       <h1 className="state-title">{stateName} - Center Summary</h1>
 
       <div className="filter-switch-wrapper">
-        <div  className="icon-export-group">
+        <div className="icon-export-group">
           <FaChartBar
             size={22}
             className="chart-icon"
@@ -192,41 +192,43 @@ function StatePage() {
         <Loader />
       ) : (
         <>
-          <table className="state-table">
-            <thead>
-              <tr>
-                <th>Center Code</th>
-                <th>District</th>
-                <th>Program Name</th>
-                <th>RM Name</th>
-                <th>Target</th>
-                <th>Enrolled</th>
-                <th>Trained</th>
-                <th>Placed</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(centerSummary).map(([code, data]) => (
-                <tr key={code}>
-                  <td>{code}</td>
-                  <td>{data.district}</td>
-                  <td>{data.verticalName}</td>
-                  <td>{data.rmName}</td>
-                  <td>{data.totalTarget}</td>
-                  <td>{data.enrolled}</td>
-                  <td>{data.trained}</td>
-                  <td>{data.placed}</td>
+          <div className="table-responsive">
+            <table className="state-table">
+              <thead>
+                <tr>
+                  <th>Center Code</th>
+                  <th>District</th>
+                  <th>Program Name</th>
+                  <th>RM Name</th>
+                  <th>Target</th>
+                  <th>Enrolled</th>
+                  <th>Trained</th>
+                  <th>Placed</th>
                 </tr>
-              ))}
-              <tr className="total-row">
-                <td colSpan="4">TOTAL</td>
-                <td>{total.totalTarget}</td>
-                <td>{total.enrolled}</td>
-                <td>{total.trained}</td>
-                <td>{total.placed}</td>
-              </tr>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {Object.entries(centerSummary).map(([code, data]) => (
+                  <tr key={code}>
+                    <td>{code}</td>
+                    <td>{data.district}</td>
+                    <td>{data.verticalName}</td>
+                    <td>{data.rmName}</td>
+                    <td>{data.totalTarget}</td>
+                    <td>{data.enrolled}</td>
+                    <td>{data.trained}</td>
+                    <td>{data.placed}</td>
+                  </tr>
+                ))}
+                <tr className="total-row">
+                  <td colSpan="4">TOTAL</td>
+                  <td>{total.totalTarget}</td>
+                  <td>{total.enrolled}</td>
+                  <td>{total.trained}</td>
+                  <td>{total.placed}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           {showModal && (
             <div className="modal-overlay" onClick={closeModal}>

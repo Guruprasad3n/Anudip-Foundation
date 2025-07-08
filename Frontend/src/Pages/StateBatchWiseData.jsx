@@ -167,35 +167,36 @@ function StateBatchWiseData() {
         <Loader />
       ) : (
         <>
-          <table className="batch-table">
-            <thead>
-              <tr>
-                <th>Center Code</th>
-                <th>Batch Code</th>
-                <th>Enrolled</th>
-                <th>Trained</th>
-                <th>Placed</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredData.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.center_code}</td>
-                  <td>{item.batch_code}</td>
-                  <td>{item.enrolled}</td>
-                  <td>{item.trained}</td>
-                  <td>{item.placed}</td>
+          <div className="table-responsive">
+            <table className="batch-table">
+              <thead>
+                <tr>
+                  <th>Center Code</th>
+                  <th>Batch Code</th>
+                  <th>Enrolled</th>
+                  <th>Trained</th>
+                  <th>Placed</th>
                 </tr>
-              ))}
-              <tr className="total-row">
-                <td colSpan="2">TOTAL</td>
-                <td>{totals.enrolled}</td>
-                <td>{totals.trained}</td>
-                <td>{totals.placed}</td>
-              </tr>
-            </tbody>
-          </table>
-
+              </thead>
+              <tbody>
+                {filteredData.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.center_code}</td>
+                    <td>{item.batch_code}</td>
+                    <td>{item.enrolled}</td>
+                    <td>{item.trained}</td>
+                    <td>{item.placed}</td>
+                  </tr>
+                ))}
+                <tr className="total-row">
+                  <td colSpan="2">TOTAL</td>
+                  <td>{totals.enrolled}</td>
+                  <td>{totals.trained}</td>
+                  <td>{totals.placed}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           {isModalOpen && (
             <div className="modal-overlay" onClick={closeModal}>
               <div className="modal-content" onClick={(e) => e.stopPropagation()}>
