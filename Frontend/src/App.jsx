@@ -17,8 +17,8 @@ function App() {
 
   return (
     <>
-      <Loader />
-      {/* {!isHomePage && <Navbar />}
+      {/* <Loader /> */}
+      {!isHomePage && <Navbar />}
 
       <div className={isHomePage ? "map-home" : ""}>
         <Routes>
@@ -33,7 +33,7 @@ function App() {
             element={<Navigate to={`/state/${redirectStateName}/centers`} />}
           />
         </Routes>
-      </div> */}
+      </div>
     </>
   );
 }
