@@ -9,12 +9,22 @@
 .pmo-title {
   text-align: center;
   font-size: 2rem;
-  color: var(--text-color);
   font-weight: 700;
-  margin-bottom: 28px;
-  animation: fadeInDown 0.5s ease-in-out;
-  text-transform: capitalize;
-  letter-spacing: 0.4px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+
+}
+
+.pmo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: var(--bg-color);
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .pmo-header {
@@ -30,13 +40,13 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  z-index: 2;
+  flex: 1 1 60%;
+  z-index: 999;
 }
 
 .pmo-select {
-  min-width: 220px;
-  z-index: 9999;
+  min-width: 240px;
+  z-index: 9999 !important;
 }
 
 .table-wrapper {
@@ -93,8 +103,22 @@
 
 .pmo-buttons {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.total-row {
+  font-weight: 600;
+  background-color: rgba(0, 128, 255, 0.08);
+  color: var(--text-color);
+  border-top: 2px solid var(--primary-color);
+}
+
+.total-row td {
+  text-align: center;
 }
 
 .btn-download {
@@ -106,6 +130,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
+
 }
 
 .btn-download:hover {
@@ -137,6 +163,12 @@
 @media (max-width: 768px) {
   .pmo-title {
     font-size: 1.5rem;
+  }
+
+  .pmo-toolbar {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
   }
 
   .pmo-header {

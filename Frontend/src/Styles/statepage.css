@@ -50,12 +50,16 @@
   flex-shrink: 0;
   width: 280px;
   position: relative;
-  z-index: 9999;
+  z-index: 5;
 }
 
 .filter-box-container .react-select__menu {
-  z-index: 10000 !important;
+  z-index: 10 !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.state-container:not(.modal-content) .react-select__menu {
+  z-index: 10000 !important;
 }
 
 .table-responsive {
@@ -91,6 +95,14 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.chart-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .state-table tbody tr:hover {
@@ -133,19 +145,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .modal-content {
-  width: 90%;
+  width: 92%;
+  max-width: 1200px;
   height: 92vh;
   background: var(--modal-bg);
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 24px;
   overflow-y: auto;
   position: relative;
   animation: fadeIn 0.3s ease-in-out;
   color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  z-index: 101;
 }
 
 .modal-title {
@@ -171,16 +187,24 @@
 
 .charts-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
-  margin-top: 20px;
+  flex-grow: 1;
 }
 
 .chart-box {
   background: var(--card-bg);
-  padding: 16px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  min-height: 360px;
+  padding: 16px 20px;
+  overflow-x: hidden;
 }
 
 .table-responsive::-webkit-scrollbar {
@@ -280,6 +304,20 @@
   .modal-title {
     font-size: 1.4rem;
   }
+
+  .modal-content {
+    padding: 16px;
+    height: 90vh;
+  }
+
+  .chart-box {
+     min-height: 300px;
+    padding: 10px;
+  }
+
+  .charts-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -302,7 +340,18 @@
     font-size: 24px;
   }
 
+  .modal-content {
+    width: 95%;
+    padding: 12px;
+  }
+
+  .chart-box {
+     min-height: 260px;
+    padding: 10px;
+    width: 100%;
+  }
+
   .modal-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }

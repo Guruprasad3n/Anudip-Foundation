@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "../Styles/IndiaMap.css";
 import Buttons from "./Button";
+
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 function IndiaMap() {
@@ -9,17 +10,23 @@ function IndiaMap() {
   const [hoveredState, setHoveredState] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [stateDataMap, setStateDataMap] = useState({});
-
   const tooltipRef = useRef(null);
 
   const normalize = (name) => name?.trim().toLowerCase();
+
+  const highlightedStates = [
+    "West Bengal", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+    "Chhattisgarh", "Delhi", "Gujarat", "Himachal Pradesh", "Jharkhand",
+    "Karnataka", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya",
+    "Odisha", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh"
+  ];
 
   const fetchStateData = async (stateName) => {
     const key = normalize(stateName);
     if (stateDataMap[key]) return;
 
     try {
-      const res = await fetch(`https://anaudip-foundation.onrender.com/api/state/${key}/centers`);
+      const res = await fetch(`${BASE_URL}/api/state/${key}/centers`);
       const result = await res.json();
       if (result.success) {
         setStateDataMap((prev) => ({
@@ -38,8 +45,7 @@ function IndiaMap() {
   };
 
   const getTooltipContent = () => {
-    const originalState = hoveredState;
-    const stateKey = normalize(originalState);
+    const stateKey = normalize(hoveredState);
     const centers = stateDataMap[stateKey];
 
     let enrolled = 0, trained = 0, placed = 0;
@@ -54,7 +60,7 @@ function IndiaMap() {
 
     return (
       <>
-        <strong>{originalState}</strong>
+        <strong>{hoveredState}</strong>
         <br />
         Enrolled: {enrolled}
         <br />
@@ -72,36 +78,46 @@ function IndiaMap() {
     svgPaths.forEach((path) => {
       const mouseOverHandler = async (event) => {
         const stateName = path.getAttribute("name");
+        if (!stateName) return;
+
         setHoveredState(stateName);
         tooltipEl.style.display = "block";
         await fetchStateData(stateName);
+      };
 
-        const updateTooltip = (e) => {
-          setTooltipPos({ x: e.clientX + 10, y: e.clientY + 10 });
-        };
+      const mouseMoveHandler = (event) => {
+        setTooltipPos({ x: event.clientX + 10, y: event.clientY + 10 });
+      };
 
-        path.addEventListener("mousemove", updateTooltip);
-
-        path.addEventListener("mouseout", () => {
-          tooltipEl.style.display = "none";
-          setHoveredState(null);
-          path.removeEventListener("mousemove", updateTooltip);
-        });
+      const mouseOutHandler = () => {
+        setHoveredState(null);
+        tooltipEl.style.display = "none";
       };
 
       path.addEventListener("mouseover", mouseOverHandler);
+      path.addEventListener("mousemove", mouseMoveHandler);
+      path.addEventListener("mouseout", mouseOutHandler);
 
       return () => {
         path.removeEventListener("mouseover", mouseOverHandler);
+        path.removeEventListener("mousemove", mouseMoveHandler);
+        path.removeEventListener("mouseout", mouseOutHandler);
       };
     });
   }, []);
 
   return (
+    <div className="india-map-wrapper">
+      <div className="button-section">
+        <Buttons />
+      </div>
 
+      <div className="map-section">
+        <div className="legend">
+          <div><span className="legend-box anudip"></span> Anudip Present</div>
+          <div><span className="legend-box no-anudip"></span> No Anudip Center</div>
+        </div>
 
-    <div className="container">
-      <div className="parent-container">
         <div className="map-container">
           <svg
             className="map-svg"
@@ -112,7 +128,6 @@ function IndiaMap() {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth=".5"
-            fill="#6f9c76"
           >
             <g id="features">
               <path
@@ -329,22 +344,17 @@ function IndiaMap() {
               ></path>
             </g>
           </svg>
-
           <div
             ref={tooltipRef}
             className="state-tooltip"
             style={{
-              display: "none",
+              display: hoveredState ? "block" : "none",
               left: `${tooltipPos.x}px`,
               top: `${tooltipPos.y}px`,
             }}
           >
             {hoveredState && getTooltipContent()}
           </div>
-        </div>
-
-        <div className="button-wrapper">
-          <Buttons />
         </div>
       </div>
     </div>

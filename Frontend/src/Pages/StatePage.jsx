@@ -4,6 +4,7 @@ import FilterBox from "../components/FilterBox";
 import "../Styles/statepage.css";
 import { FaChartBar, FaFileCsv, FaFilePdf } from "react-icons/fa";
 import { Bar, Pie } from "react-chartjs-2";
+
 import {
   Chart,
   CategoryScale,
@@ -13,7 +14,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import Loader from "../components/Loader"
+import Loader from "../components/Loader";
 Chart.register(
   CategoryScale,
   LinearScale,
@@ -24,6 +25,7 @@ Chart.register(
 );
 
 const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 function StatePage() {
   const { stateName } = useParams();
@@ -38,7 +40,7 @@ function StatePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`https://anaudip-foundation.onrender.com/api/state/${stateName}/centers`);
+        const res = await fetch(`${BASE_URL}/api/state/${stateName}/centers`);
         const result = await res.json();
         if (result.success) {
           setCenterData(result.data);
@@ -54,7 +56,7 @@ function StatePage() {
 
   const handleExport = async (type) => {
     try {
-      window.open(`https://anaudip-foundation.onrender.com/api/state/${stateName}/centers?exportType=${type}`, '_blank');
+      window.open(`${BASE_URL}/api/state/${stateName}/centers?exportType=${type}`, '_blank');
     } catch (error) {
       console.error(`Failed to export ${type}:`, error);
     }
@@ -155,24 +157,9 @@ function StatePage() {
 
       <div className="filter-switch-wrapper">
         <div className="icon-export-group">
-          <FaChartBar
-            size={22}
-            className="chart-icon"
-            onClick={openModal}
-            title="View Charts"
-          />
-          <FaFileCsv
-            size={22}
-            className="export-icon"
-            onClick={() => handleExport("csv")}
-            title="Download CSV"
-          />
-          <FaFilePdf
-            size={22}
-            className="export-icon"
-            onClick={() => handleExport("pdf")}
-            title="Download PDF"
-          />
+          <FaChartBar size={22} className="chart-icon" onClick={openModal} title="View Charts" />
+          <FaFileCsv size={22} className="export-icon" onClick={() => handleExport("csv")} title="Download CSV" />
+          <FaFilePdf size={22} className="export-icon" onClick={() => handleExport("pdf")} title="Download PDF" />
           <Link to={`/state/${stateName}/batches`} className="switch-button">
             View Batch Wise Data
           </Link>
@@ -180,10 +167,7 @@ function StatePage() {
 
         {uniqueCenterCodes.length > 0 ? (
           <div className="filter-box-container">
-            <FilterBox
-              options={uniqueCenterCodes}
-              onChange={setSelectedCenters}
-            />
+            <FilterBox options={uniqueCenterCodes} onChange={setSelectedCenters} />
           </div>
         ) : (
           <p>No center codes found for this state.</p>
@@ -238,10 +222,32 @@ function StatePage() {
                 <h3 className="modal-title">{stateName} - Summary Charts</h3>
                 <div className="charts-wrapper">
                   <div className="chart-box">
-                    <Bar data={barData} options={{ responsive: true }} />
+                    <Bar data={barData} options={{
+                      responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom", labels: { boxWidth: 14, font: { size: 12 } } }, tooltip: { enabled: true, mode: "index", intersect: false }, datalabels: { display: false } }, scales: {
+                        x: {
+                          ticks: {
+                            autoSkip: false,
+                            maxRotation: 45,
+                            minRotation: 45,
+                          },
+                          title: {
+                            display: true,
+                            text: "Centre Code"
+                          }
+                        }, y: {
+                          beginAtZero: true,
+                          title: {
+                            display: true,
+                            text: "Count"
+                          }
+                        }
+                      }
+                    }} />
                   </div>
                   <div className="chart-box">
-                    <Pie data={pieData} options={{ responsive: true }} />
+                    <div style={{ width: 220, height: 220 }}>
+                      <Pie data={pieData} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom", labels: { font: { size: 12 } } } } }} />
+                    </div>
                   </div>
                 </div>
                 <button className="modal-close" onClick={closeModal}>Close</button>

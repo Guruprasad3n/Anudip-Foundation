@@ -4,18 +4,16 @@ import axios from "axios";
 import FilterBox from "../components/FilterBox";
 import "../Styles/batchwisedata.css";
 import { FaChartBar, FaFileCsv, FaFilePdf } from "react-icons/fa";
+import { Bar, Doughnut } from "react-chartjs-2";
 
-import { Bar, Pie, PolarArea } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
   ArcElement,
-  RadialLinearScale,
   Tooltip,
-  Legend,
-  PolarAreaController,
+  Legend
 } from "chart.js";
 
 import ChartDataLabels from "chartjs-plugin-datalabels";
@@ -28,10 +26,9 @@ ChartJS.register(
   ArcElement,
   Tooltip,
   Legend,
-  RadialLinearScale,
-  PolarAreaController,
   ChartDataLabels
 );
+
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 function StateBatchWiseData() {
@@ -49,7 +46,7 @@ function StateBatchWiseData() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`https://anaudip-foundation.onrender.com/api/state/${stateName}/batches`);
+        const res = await axios.get(`${BASE_URL}/api/state/${stateName}/batches`);
         const data = res.data.data;
         setBatchData(data);
         setFilteredData(data);
@@ -75,7 +72,7 @@ function StateBatchWiseData() {
 
   const handleExport = async (type) => {
     try {
-      window.open(`https://anaudip-foundation.onrender.com/api/state/${stateName}/batches?exportType=${type}`, '_blank');
+      window.open(`${BASE_URL}/api/state/${stateName}/batches?exportType=${type}`, '_blank');
     } catch (error) {
       console.error(`Failed to export ${type}:`, error);
     }
@@ -112,7 +109,7 @@ function StateBatchWiseData() {
     ],
   };
 
-  const pieData = {
+  const doughnutData = {
     labels: ["Enrolled", "Trained", "Placed"],
     datasets: [
       {
@@ -121,17 +118,6 @@ function StateBatchWiseData() {
       },
     ],
   };
-
-  const polarData = {
-    labels: ["Enrolled", "Trained", "Placed"],
-    datasets: [
-      {
-        data: [totals.enrolled, totals.trained, totals.placed],
-        backgroundColor: ["#007acc", "#00cec9", "#2ecc71"],
-      },
-    ],
-  };
-
 
   return (
     <div className="batch-container">
@@ -161,7 +147,9 @@ function StateBatchWiseData() {
             View Center Wise Data
           </Link>
         </div>
-        <FilterBox options={uniqueCenters} onChange={setSelectedCenters} />
+        <div className="filter-box-wrapper" style={{ zIndex: 1 }}>
+          <FilterBox options={uniqueCenters} onChange={setSelectedCenters} />
+        </div>
       </div>
 
       {loading ? (
@@ -198,20 +186,82 @@ function StateBatchWiseData() {
               </tbody>
             </table>
           </div>
+
           {isModalOpen && (
             <div className="modal-overlay" onClick={closeModal}>
               <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-button" onClick={closeModal}>×</button>
-                <h2>{stateName} - Batch-wise Charts</h2>
-                <div className="charts">
-                  <div className="chart-wrapper" style={{ height: "300px" }}>
-                    <Bar data={barData} options={{ responsive: true }} />
+                <h2 className="modal-title">{stateName} - Batch-wise Charts</h2>
+                <div className="charts-wrapper">
+                  <div className="chart-box">
+                    <Bar
+                      data={barData}
+                      options={{
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                          legend: {
+                            position: "bottom",
+                            labels: { boxWidth: 14, font: { size: 12 } }
+                          },
+                          tooltip: {
+                            enabled: true,
+                            mode: "index",
+                            intersect: false
+                          },
+                          datalabels: {
+                            display: false,
+                          },
+                        },
+                        scales: {
+                          x: {
+                            ticks: {
+                              autoSkip: false,
+                              maxRotation: 45,
+                              minRotation: 45,
+                            },
+                            title: {
+                              display: true,
+                              text: "Batch Code"
+                            }
+                          },
+                          y: {
+                            beginAtZero: true,
+                            title: {
+                              display: true,
+                              text: "Count"
+                            }
+                          }
+                        }
+                      }}
+                    />
                   </div>
-                  <div className="chart-wrapper" style={{ height: "300px" }}>
-                    <Pie data={pieData} options={{ responsive: true }} />
-                  </div>
-                  <div className="chart-wrapper" style={{ height: "300px" }}>
-                    <PolarArea data={polarData} options={{ responsive: true }} />
+
+                  <div className="chart-box doughnut-wrapper">
+                    <Doughnut
+                      data={doughnutData}
+                      options={{
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: "65%",
+                        plugins: {
+                          legend: {
+                            position: "bottom",
+                            labels: {
+                              font: {
+                                size: 12,
+                              },
+                            },
+                          },
+                          tooltip: {
+                            enabled: true,
+                          },
+                        },
+                        layout: {
+                          padding: 10,
+                        },
+                      }}
+                    />
                   </div>
                 </div>
               </div>

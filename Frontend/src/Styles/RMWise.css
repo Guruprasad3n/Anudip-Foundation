@@ -4,45 +4,63 @@
   background-color: var(--bg-color);
   color: var(--text-color);
   min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 .rmwise-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: flex-start;
   margin-bottom: 20px;
+  gap: 20px;
 }
 
 .rmwise-title {
-  flex: 1;
-  text-align: center;
-  font-size: 24px;
+  font-size: 2rem;
   font-weight: bold;
-  color: var(--primary-color);
+  color: var(--text-color);
   margin: 0;
 }
 
-.rmwise-filters {
+.rmwise-filters-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  min-width: 320px;
+  position: relative;
+  z-index: 20;
+  animation: fadeSlideIn 0.4s ease-in-out;
+}
+
+.rmwise-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.rmwise-export-buttons {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
   justify-content: flex-end;
-  min-width: 300px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .rmwise-select {
-  min-width: 200px;
-  z-index: 999;
+  z-index: 9999 !important;
+  position: relative;
 }
 
 .table-wrapper {
-  max-height: 500px;
   overflow-x: auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .rmwise-table {
@@ -79,47 +97,24 @@
   color: var(--text-color);
 }
 
-/* Quarter cells themed */
 .q1-cell {
-  background-color: rgba(0, 123, 255, 0.08); /* Soft blue */
-  color: var(--text-color);
+  background-color: rgba(0, 123, 255, 0.08);
 }
 
 .q2-cell {
-  background-color: rgba(40, 167, 69, 0.1); /* Soft green */
-  color: var(--text-color);
+  background-color: rgba(40, 167, 69, 0.1);
 }
 
 .q3-cell {
-  background-color: rgba(255, 193, 7, 0.1); /* Soft yellow */
-  color: var(--text-color);
+  background-color: rgba(255, 193, 7, 0.1);
 }
 
 .q4-cell {
-  background-color: rgba(220, 53, 69, 0.1); /* Soft red */
-  color: var(--text-color);
+  background-color: rgba(220, 53, 69, 0.1);
 }
 
 .rmwise-table tbody tr:hover {
   background-color: rgba(0, 123, 255, 0.05);
-}
-
-.etp-cell {
-  padding: 0;
-}
-
-.etp-box {
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--text-color);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  margin: 4px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.fade-in {
-  animation: fadeSlideIn 0.3s ease forwards;
 }
 
 .download-btn {
@@ -137,10 +132,14 @@
   background-color: #085089;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
@@ -148,26 +147,27 @@
   }
 }
 
-.clickable {
-  cursor: pointer;
-}
-
-/* Responsive Design */
 @media screen and (max-width: 768px) {
   .rmwise-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
-  .rmwise-filters {
+  .rmwise-filters-wrapper {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .rmwise-filters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rmwise-export-buttons {
     justify-content: flex-start;
     width: 100%;
   }
 
-  .rmwise-select {
-    width: 100%;
-  }
-
+  .rmwise-select,
   .download-btn {
     width: 100%;
   }
@@ -175,5 +175,13 @@
   .rmwise-title {
     font-size: 20px;
     margin-bottom: 10px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .rmwise-table {
+    min-width: 900px;
   }
 }

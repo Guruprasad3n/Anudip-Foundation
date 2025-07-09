@@ -4,7 +4,6 @@ import Select from "react-select";
 import "../Styles/RMWise.css";
 import Loader from "../components/Loader";
 import { ThemeContext } from "../ThemeContext";
-const BASE_URL = import.meta.env.VITE_API_URL;
 
 const quarterOptions = [
   { label: "Q1", value: "1" },
@@ -12,6 +11,8 @@ const quarterOptions = [
   { label: "Q3", value: "3" },
   { label: "Q4", value: "4" },
 ];
+
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const RMWiseData = () => {
   const [rmData, setRmData] = useState([]);
@@ -23,7 +24,10 @@ const RMWiseData = () => {
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [selectedQuarters, setSelectedQuarters] = useState([]);
   const [expandedQuarters, setExpandedQuarters] = useState({});
-  const { theme } = useContext(ThemeContext); // 👈 Use theme context
+  const [verticalOptions, setVerticalOptions] = useState([]);
+  const [selectedVerticals, setSelectedVerticals] = useState([]);
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     fetchData();
@@ -31,17 +35,16 @@ const RMWiseData = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`https://anaudip-foundation.onrender.com/api/rm`);
-      const data = res.data.data.map((item) => ({
-        ...item,
-        quarterTargets: JSON.parse(item.quarterTargets),
-        quarterAchievements: JSON.parse(item.quarterAchievements),
-      }));
+      const res = await axios.get(`${BASE_URL}/api/rm`);
+      const data = res.data.data;
       setRmData(data);
       setFilteredData(data);
 
       const uniqueRMs = [...new Set(data.map((item) => item.rmName))];
       setRmOptions(uniqueRMs.map((rm) => ({ label: rm, value: rm })));
+
+      const uniqueVerticals = [...new Set(data.map((item) => item.vertical))];
+      setVerticalOptions(uniqueVerticals.map((v) => ({ label: v, value: v })));
 
       const uniqueProjects = [...new Set(data.map((item) => item.projectName))];
       setProjectOptions(uniqueProjects.map((proj) => ({ label: proj, value: proj })));
@@ -54,20 +57,22 @@ const RMWiseData = () => {
 
   useEffect(() => {
     applyFilters();
-  }, [selectedRMs, selectedProjects, selectedQuarters, rmData]);
+  }, [selectedRMs, selectedProjects, selectedQuarters, selectedVerticals, rmData]);
 
   const applyFilters = () => {
     const rmValues = selectedRMs.map((r) => r.value);
     const projectValues = selectedProjects.map((p) => p.value);
     const qValues = selectedQuarters.map((q) => q.value);
+    const verticalValues = selectedVerticals.map((v) => v.value);
 
     const filtered = rmData.filter((item) => {
+      const verticalMatch = verticalValues.length === 0 || verticalValues.includes(item.vertical);
       const rmMatch = rmValues.length === 0 || rmValues.includes(item.rmName);
       const projectMatch = projectValues.length === 0 || projectValues.includes(item.projectName);
       const quarterMatch =
-        qValues.length === 0 ||
-        qValues.some((q) => item.quarterTargets?.[q] !== undefined);
-      return rmMatch && projectMatch && quarterMatch;
+        qValues.length === 0 || qValues.some((q) => item[`Q${q} Target`] !== undefined);
+
+      return rmMatch && projectMatch && verticalMatch && quarterMatch;
     });
 
     setFilteredData(filtered);
@@ -86,7 +91,7 @@ const RMWiseData = () => {
 
   const downloadFile = async (type) => {
     try {
-      const res = await axios.get(`https://anaudip-foundation.onrender.com/api/rm?exportType=${type}`, {
+      const res = await axios.get(`${BASE_URL}/api/rm?exportType=${type}`, {
         responseType: "blob",
       });
       const url = window.URL.createObjectURL(new Blob([res.data]));
@@ -102,7 +107,6 @@ const RMWiseData = () => {
     }
   };
 
-  // 👇 Custom Styles for react-select based on dark/light mode
   const selectStyles = {
     control: (base, state) => ({
       ...base,
@@ -143,44 +147,76 @@ const RMWiseData = () => {
     }),
   };
 
+  // ✅ TOTAL ROW LOGIC
+  const totalRow = {
+    totalTarget: filteredData.reduce((sum, item) => sum + (item.totalTarget || 0), 0),
+  };
+
+  activeQuarters.forEach((q) => {
+    totalRow[`Q${q} Target`] = filteredData.reduce((sum, item) => sum + (item[`Q${q} Target`] || 0), 0);
+    if (expandedQuarters[q]) {
+      totalRow[`Q${q} Enrolled`] = filteredData.reduce((sum, item) => sum + (item[`Q${q} Enrolled`] || 0), 0);
+      totalRow[`Q${q} Trained`] = filteredData.reduce((sum, item) => sum + (item[`Q${q} Trained`] || 0), 0);
+      totalRow[`Q${q} Placed`] = filteredData.reduce((sum, item) => sum + (item[`Q${q} Placed`] || 0), 0);
+    }
+  });
+
   return (
     <div className="rmwise-container">
       <div className="rmwise-header">
         <h2 className="rmwise-title">RM-wise Target Allocation</h2>
-        <div className="rmwise-filters">
-          <Select
-            isMulti
-            options={rmOptions}
-            value={selectedRMs}
-            onChange={setSelectedRMs}
-            placeholder="Filter by RM"
-            className="rmwise-select"
-            styles={selectStyles}
-          />
-          <Select
-            isMulti
-            options={projectOptions}
-            value={selectedProjects}
-            onChange={setSelectedProjects}
-            placeholder="Filter by Project"
-            className="rmwise-select"
-            styles={selectStyles}
-          />
-          <Select
-            isMulti
-            options={quarterOptions}
-            value={selectedQuarters}
-            onChange={setSelectedQuarters}
-            placeholder="Filter by Quarter"
-            className="rmwise-select"
-            styles={selectStyles}
-          />
-          <button className="download-btn" onClick={() => downloadFile("csv")}>
-            Export CSV
-          </button>
-          <button className="download-btn" onClick={() => downloadFile("pdf")}>
-            Export PDF
-          </button>
+        <div className="rmwise-filters-wrapper">
+          <div className="rmwise-filters-grid">
+            <Select
+              isMulti
+              options={verticalOptions}
+              value={selectedVerticals}
+              onChange={setSelectedVerticals}
+              placeholder="Filter by Vertical"
+              className="rmwise-select"
+              styles={selectStyles}
+              menuPortalTarget={document.body}
+            />
+            <Select
+              isMulti
+              options={rmOptions}
+              value={selectedRMs}
+              onChange={setSelectedRMs}
+              placeholder="Filter by RM"
+              className="rmwise-select"
+              styles={selectStyles}
+              menuPortalTarget={document.body}
+            />
+            <Select
+              isMulti
+              options={projectOptions}
+              value={selectedProjects}
+              onChange={setSelectedProjects}
+              placeholder="Filter by Project"
+              className="rmwise-select"
+              styles={selectStyles}
+              menuPortalTarget={document.body}
+            />
+            <Select
+              isMulti
+              options={quarterOptions}
+              value={selectedQuarters}
+              onChange={setSelectedQuarters}
+              placeholder="Filter by Quarter"
+              className="rmwise-select"
+              styles={selectStyles}
+              menuPortalTarget={document.body}
+            />
+          </div>
+
+          <div className="rmwise-export-buttons">
+            <button className="download-btn" onClick={() => downloadFile("csv")}>
+              Export CSV
+            </button>
+            <button className="download-btn" onClick={() => downloadFile("pdf")}>
+              Export PDF
+            </button>
+          </div>
         </div>
       </div>
 
@@ -194,6 +230,7 @@ const RMWiseData = () => {
                 <th>RM Name</th>
                 <th>Project</th>
                 <th>Program</th>
+                <th>State</th>
                 <th>Total Target</th>
                 {activeQuarters.map((q) => (
                   <React.Fragment key={q}>
@@ -217,23 +254,18 @@ const RMWiseData = () => {
                   <td>{item.rmName}</td>
                   <td>{item.projectName}</td>
                   <td>{item.vertical}</td>
+                  <td>{item.state}</td>
                   <td>{item.totalTarget}</td>
                   {activeQuarters.map((q) => (
                     <React.Fragment key={q}>
                       <td className={`q${q}-cell clickable`} onClick={() => toggleQuarter(q)}>
-                        {item.quarterTargets?.[q] || 0}
+                        {item[`Q${q} Target`] || 0}
                       </td>
                       {expandedQuarters[q] && (
                         <>
-                          <td className={`q${q}-cell etp-cell`}>
-                            {item.quarterAchievements?.[q]?.enrolled || 0}
-                          </td>
-                          <td className={`q${q}-cell etp-cell`}>
-                            {item.quarterAchievements?.[q]?.trained || 0}
-                          </td>
-                          <td className={`q${q}-cell etp-cell`}>
-                            {item.quarterAchievements?.[q]?.placed || 0}
-                          </td>
+                          <td>{item[`Q${q} Enrolled`] || 0}</td>
+                          <td>{item[`Q${q} Trained`] || 0}</td>
+                          <td>{item[`Q${q} Placed`] || 0}</td>
                         </>
                       )}
                     </React.Fragment>
@@ -241,6 +273,25 @@ const RMWiseData = () => {
                 </tr>
               ))}
             </tbody>
+
+            <tfoot>
+              <tr className="total-row">
+                <td colSpan={4} style={{ fontWeight: "bold" }}>Total</td>
+                <td>{totalRow.totalTarget}</td>
+                {activeQuarters.map((q) => (
+                  <React.Fragment key={`total-q${q}`}>
+                    <td className={`q${q}-cell`}>{totalRow[`Q${q} Target`] || 0}</td>
+                    {expandedQuarters[q] && (
+                      <>
+                        <td>{totalRow[`Q${q} Enrolled`] || 0}</td>
+                        <td>{totalRow[`Q${q} Trained`] || 0}</td>
+                        <td>{totalRow[`Q${q} Placed`] || 0}</td>
+                      </>
+                    )}
+                  </React.Fragment>
+                ))}
+              </tr>
+            </tfoot>
           </table>
         </div>
       )}
@@ -249,196 +300,3 @@ const RMWiseData = () => {
 };
 
 export default RMWiseData;
-
-
-
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import Select from "react-select";
-// import "../Styles/RMWise.css";
-// import Loader from "../components/Loader";
-
-// const quarterOptions = [
-//   { label: "Q1", value: "1" },
-//   { label: "Q2", value: "2" },
-//   { label: "Q3", value: "3" },
-//   { label: "Q4", value: "4" },
-// ];
-
-// const RMWiseData = () => {
-//   const [rmData, setRmData] = useState([]);
-//   const [filteredData, setFilteredData] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [rmOptions, setRmOptions] = useState([]);
-//   const [projectOptions, setProjectOptions] = useState([]);
-//   const [selectedRMs, setSelectedRMs] = useState([]);
-//   const [selectedProjects, setSelectedProjects] = useState([]);
-//   const [selectedQuarters, setSelectedQuarters] = useState([]);
-//   const [expandedQuarters, setExpandedQuarters] = useState({});
-
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-
-//   const fetchData = async () => {
-//     try {
-//       const res = await axios.get("https://anaudip-foundation.onrender.com/api/rm");
-//       const data = res.data.data.map((item) => ({
-//         ...item,
-//         quarterTargets: JSON.parse(item.quarterTargets),
-//         quarterAchievements: JSON.parse(item.quarterAchievements),
-//       }));
-//       setRmData(data);
-//       setFilteredData(data);
-
-//       const uniqueRMs = [...new Set(data.map((item) => item.rmName))];
-//       setRmOptions(uniqueRMs.map((rm) => ({ label: rm, value: rm })));
-
-//       const uniqueProjects = [...new Set(data.map((item) => item.projectName))];
-//       setProjectOptions(uniqueProjects.map((proj) => ({ label: proj, value: proj })));
-//     } catch (error) {
-//       console.error("Error fetching RM-wise data:", error);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     applyFilters();
-//   }, [selectedRMs, selectedProjects, selectedQuarters, rmData]);
-
-//   const applyFilters = () => {
-//     const rmValues = selectedRMs.map((r) => r.value);
-//     const projectValues = selectedProjects.map((p) => p.value);
-//     const qValues = selectedQuarters.map((q) => q.value);
-
-//     const filtered = rmData.filter((item) => {
-//       const rmMatch = rmValues.length === 0 || rmValues.includes(item.rmName);
-//       const projectMatch = projectValues.length === 0 || projectValues.includes(item.projectName);
-//       const quarterMatch =
-//         qValues.length === 0 ||
-//         qValues.some((q) => item.quarterTargets?.[q] !== undefined);
-//       return rmMatch && projectMatch && quarterMatch;
-//     });
-
-//     setFilteredData(filtered);
-//   };
-
-//   const toggleQuarter = (q) => {
-//     setExpandedQuarters((prev) => ({
-//       ...prev,
-//       [q]: !prev[q],
-//     }));
-//   };
-
-//   const activeQuarters = selectedQuarters.length > 0
-//     ? selectedQuarters.map((q) => q.value)
-//     : ["1", "2", "3", "4"];
-
-//   const downloadFile = async (type) => {
-//     try {
-//       const res = await axios.get(`https://anaudip-foundation.onrender.com/api/rm?exportType=${type}`, {
-//         responseType: "blob",
-//       });
-//       const url = window.URL.createObjectURL(new Blob([res.data]));
-//       const link = document.createElement("a");
-//       link.href = url;
-//       const fileName = `rm_data_${Date.now()}.${type}`;
-//       link.setAttribute("download", fileName);
-//       document.body.appendChild(link);
-//       link.click();
-//       link.remove();
-//     } catch (err) {
-//       console.error(`Error downloading ${type}:`, err);
-//     }
-//   };
-
-
-//   return (
-//     <div className="rmwise-container">
-//       <div className="rmwise-header">
-//         <h2 className="rmwise-title">RM-wise Target Allocation</h2>
-//         {/* <div className="rmwise-filters">
-//           <Select isMulti options={rmOptions} value={selectedRMs} onChange={setSelectedRMs} placeholder="Filter by RM" className="rmwise-select" />
-//           <Select isMulti options={projectOptions} value={selectedProjects} onChange={setSelectedProjects} placeholder="Filter by Project" className="rmwise-select" />
-//           <Select isMulti options={quarterOptions} value={selectedQuarters} onChange={setSelectedQuarters} placeholder="Filter by Quarter" className="rmwise-select" />
-//         </div> */}
-//         <div className="rmwise-filters">
-//           <Select isMulti options={rmOptions} value={selectedRMs} onChange={setSelectedRMs} placeholder="Filter by RM" className="rmwise-select" />
-//           <Select isMulti options={projectOptions} value={selectedProjects} onChange={setSelectedProjects} placeholder="Filter by Project" className="rmwise-select" />
-//           <Select isMulti options={quarterOptions} value={selectedQuarters} onChange={setSelectedQuarters} placeholder="Filter by Quarter" className="rmwise-select" />
-
-//           <button className="download-btn" onClick={() => downloadFile("csv")}>Export CSV</button>
-//           <button className="download-btn" onClick={() => downloadFile("pdf")}>Export PDF</button>
-//         </div>
-
-//       </div>
-
-//       {loading ? (
-//         <Loader />
-//       ) : (
-//         <div className="table-wrapper">
-//           <table className="rmwise-table">
-//             <thead>
-//               <tr>
-//                 <th>RM Name</th>
-//                 <th>Project</th>
-//                 <th>Program</th>
-//                 <th>Total Target</th>
-//                 {activeQuarters.map((q) => (
-//                   <React.Fragment key={q}>
-//                     <th onClick={() => toggleQuarter(q)} className="clickable">
-//                       Q{q} Target
-//                     </th>
-//                     {expandedQuarters[q] && (
-//                       <>
-//                         <th>Q{q} Enrolled</th>
-//                         <th>Q{q} Trained</th>
-//                         <th>Q{q} Placed</th>
-//                       </>
-//                     )}
-//                   </React.Fragment>
-//                 ))}
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {filteredData.map((item, idx) => (
-//                 <tr key={idx}>
-//                   <td>{item.rmName}</td>
-//                   <td>{item.projectName}</td>
-//                   <td>{item.vertical}</td>
-//                   <td>{item.totalTarget}</td>
-//                   {activeQuarters.map((q) => (
-//                     <React.Fragment key={q}>
-//                       <td className={`q${q}-cell clickable`} onClick={() => toggleQuarter(q)}>
-//                         {item.quarterTargets?.[q] || 0}
-//                       </td>
-//                       {expandedQuarters[q] && (
-//                         <>
-//                           <td className={`q${q}-cell etp-cell`}>
-//                             {item.quarterAchievements?.[q]?.enrolled || 0}
-
-//                           </td>
-//                           <td className={`q${q}-cell etp-cell`}>
-//                             {item.quarterAchievements?.[q]?.trained || 0}
-
-//                           </td>
-//                           <td className={`q${q}-cell etp-cell`}>
-//                             {item.quarterAchievements?.[q]?.placed || 0}
-
-//                           </td>
-//                         </>
-//                       )}
-//                     </React.Fragment>
-//                   ))}
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default RMWiseData;
