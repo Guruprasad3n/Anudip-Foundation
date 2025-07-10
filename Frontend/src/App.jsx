@@ -8,6 +8,7 @@ import PMOWise from "./Pages/PMOWiseData";
 import RMWiseData from "./Pages/RMWiseData";
 import Loader from "./components/Loader";
 import "./App.css";
+import CollapsibleSidebar from "./components/CollapsibleSidebar";
 
 function App() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function App() {
   return (
     <>
       {/* <Loader /> */}
+      {/* <CollapsibleSidebar /> */}
       {!isHomePage && <Navbar />}
 
       <div className={isHomePage ? "map-home" : ""}>
