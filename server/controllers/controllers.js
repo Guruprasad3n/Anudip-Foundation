@@ -398,8 +398,6 @@ exports.getPMOWiseData = async (req, res) => {
 
 exports.verticalRMData = async (req, res) => {
   const vertical = req.params.verticalName.toLowerCase();
-  console.log(`🔍 Fetching RM-wise data for vertical: ${vertical}`);
-
   try {
     const [rmTargets] = await db.query(`
       SELECT 

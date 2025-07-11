@@ -15,12 +15,12 @@ function IndiaMap() {
 
   const normalize = (name) => name?.trim().toLowerCase();
 
-  const highlightedStates = [
-    "West Bengal", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
-    "Chhattisgarh", "Delhi", "Gujarat", "Himachal Pradesh", "Jharkhand",
-    "Karnataka", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya",
-    "Odisha", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh"
-  ];
+  // const highlightedStates = [
+  //   "West Bengal", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+  //   "Chhattisgarh", "Delhi", "Gujarat", "Himachal Pradesh", "Jharkhand",
+  //   "Karnataka", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya",
+  //   "Odisha", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh"
+  // ];
 
   const fetchStateData = async (stateName) => {
     const key = normalize(stateName);
@@ -127,10 +127,11 @@ function IndiaMap() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1000 1000"
               preserveAspectRatio="xMidYMid meet"
-              stroke="#ffffff"
+              stroke="#0000"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth=".5"
+              fill="white"
             >
               <g id="features">
                 <path

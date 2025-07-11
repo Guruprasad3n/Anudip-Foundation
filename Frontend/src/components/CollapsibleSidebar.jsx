@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -12,11 +12,13 @@ import {
 } from 'react-icons/fi';
 
 import '../Styles/CollapsibleSidebar.css';
+import { ThemeContext } from '../ThemeContext';
 
 const CollapsibleSidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
     const navigate = useNavigate();
+    const { theme } = useContext(ThemeContext)
 
     useEffect(() => {
         let timeout;
@@ -28,7 +30,7 @@ const CollapsibleSidebar = () => {
 
     return (
         <div
-            className="sidebar-container"
+            className={`sidebar-container ${theme}`}
             onMouseLeave={() => setShowTooltip(false)}
         >
             <button

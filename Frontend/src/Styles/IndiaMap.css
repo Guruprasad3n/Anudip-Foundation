@@ -55,7 +55,7 @@
 }
 
 .legend-box.no-anudip {
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 .state-tooltip {
@@ -113,7 +113,7 @@ path[name="Uttar Pradesh"] {
 }
 
 svg path {
-  stroke: #333;
+  stroke: #5c5c5c;
   stroke-width: 0.8;
   cursor: pointer;
   transition: 0.2s ease-in-out;
