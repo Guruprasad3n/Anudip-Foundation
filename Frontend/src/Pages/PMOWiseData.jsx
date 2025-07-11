@@ -147,36 +147,6 @@ const PMOWise = () => {
 
     return (
         <div className="pmo-container">
-            {/* <div className="pmo-header">
-        <h2 className="pmo-title">PMO-wise Target Overview</h2>
-        <div className="pmo-controls">
-          <div className="pmo-filters">
-            <Select
-              isMulti
-              options={funderOptions}
-              value={selectedFunders}
-              onChange={setSelectedFunders}
-              placeholder="Filter by Funder Name"
-              className="pmo-select"
-              styles={selectStyles}
-            />
-            <Select
-              isMulti
-              options={verticalOptions}
-              value={selectedVerticals}
-              onChange={setSelectedVerticals}
-              placeholder="Filter by Vertical"
-              className="pmo-select"
-              styles={selectStyles}
-            />
-          </div>
-          <div className="pmo-buttons">
-            <button onClick={() => downloadReport("csv")} className="btn-download">📄 Export CSV</button>
-            <button onClick={() => downloadReport("pdf")} className="btn-download">🧾 Export PDF</button>
-          </div>
-        </div>
-      </div> */}
-
             <div className="pmo-header">
                 <h2 className="pmo-title">PMO-wise Target Overview</h2>
 
@@ -246,8 +216,6 @@ const PMOWise = () => {
                                         <td>{item.totalPlaced}</td>
                                     </tr>
                                 ))}
-
-                                {/* Totals Row */}
                                 <tr className="total-row">
                                     <td colSpan={4} style={{ fontWeight: "bold" }}>Total</td>
                                     <td>{totalRow.totalEnrollmentTarget}</td>

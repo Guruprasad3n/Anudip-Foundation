@@ -9,6 +9,8 @@ import RMWiseData from "./Pages/RMWiseData";
 import Loader from "./components/Loader";
 import "./App.css";
 import CollapsibleSidebar from "./components/CollapsibleSidebar";
+import VerticalPage from "./Pages/VerticalData";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const location = useLocation();
@@ -30,10 +32,12 @@ function App() {
           <Route path="/project-wise-data" element={<ProjectWise />} />
           <Route path="/pmo-wise-data" element={<PMOWise />} />
           <Route path="/rm-wise-data" element={<RMWiseData />} />
+          <Route path="/vertical/:verticalName" element={<VerticalPage />} />
           <Route
             path="/state/:stateName"
             element={<Navigate to={`/state/${redirectStateName}/centers`} />}
           />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </>

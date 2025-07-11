@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+    FiArrowLeft,
+    FiArrowRight,
+    FiBookOpen,
+    FiSave,
+    FiAward,
+    FiTrendingUp,
+    FiCpu
+} from 'react-icons/fi';
+
 import '../Styles/CollapsibleSidebar.css';
 
 const CollapsibleSidebar = () => {
@@ -26,10 +36,9 @@ const CollapsibleSidebar = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 onMouseEnter={() => setShowTooltip(true)}
             >
-                {isOpen ? '<' : '>'}
+                {isOpen ? <FiArrowLeft /> : <FiArrowRight />}
                 {!isOpen && showTooltip && (
-                    <span className="tooltip">Program Wise Data
-                    </span>
+                    <span className="tooltip">Program Wise Data</span>
                 )}
             </button>
 
@@ -43,11 +52,21 @@ const CollapsibleSidebar = () => {
                         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                     >
                         <div className="sidebar-title">Program-wise Data</div>
-                        <button onClick={() => navigate('/vertical/diya')}>DIYA</button>
-                        <button onClick={() => navigate('/vertical/save')}>SAVE</button>
-                        <button onClick={() => navigate('/vertical/best')}>BEST</button>
-                        <button onClick={() => navigate('/vertical/ace')}>ACE</button>
-                        <button onClick={() => navigate('/vertical/deeptech')}>Deep Tech</button>
+                        <button onClick={() => navigate('/vertical/diya')}>
+                            <FiBookOpen style={{ marginRight: '8px' }} /> DIYA
+                        </button>
+                        <button onClick={() => navigate('/vertical/save')}>
+                            <FiSave style={{ marginRight: '8px' }} /> SAVE
+                        </button>
+                        <button onClick={() => navigate('/vertical/best')}>
+                            <FiAward style={{ marginRight: '8px' }} /> BEST
+                        </button>
+                        <button onClick={() => navigate('/vertical/ace')}>
+                            <FiTrendingUp style={{ marginRight: '8px' }} /> ACE
+                        </button>
+                        <button onClick={() => navigate('/vertical/deeptech')}>
+                            <FiCpu style={{ marginRight: '8px' }} /> Deep Tech
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
