@@ -7,7 +7,7 @@
   "theme_color": "#006e6e",
   "icons": [
     {
-      "src": "../src/Assets/Anudip-Logo.png",
+      "src": "/Anudip-Logo.png",
       "sizes": "192x192",
       "type": "image/png"
     }
