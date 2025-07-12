@@ -11,6 +11,7 @@ import "./App.css";
 import CollapsibleSidebar from "./components/CollapsibleSidebar";
 import VerticalPage from "./Pages/VerticalData";
 import ErrorPage from "./components/ErrorPage";
+import ComparisonPage from "./Pages/ComparisonPage";
 
 function App() {
   const location = useLocation();
@@ -37,6 +38,7 @@ function App() {
             path="/state/:stateName"
             element={<Navigate to={`/state/${redirectStateName}/centers`} />}
           />
+          <Route path="/comparison" element={<ComparisonPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

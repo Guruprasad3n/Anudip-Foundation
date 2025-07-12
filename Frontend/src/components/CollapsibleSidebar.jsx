@@ -8,7 +8,8 @@ import {
     FiSave,
     FiAward,
     FiTrendingUp,
-    FiCpu
+    FiCpu,
+    FiBarChart
 } from 'react-icons/fi';
 
 import '../Styles/CollapsibleSidebar.css';
@@ -68,6 +69,10 @@ const CollapsibleSidebar = () => {
                         </button>
                         <button onClick={() => navigate('/vertical/deeptech')}>
                             <FiCpu style={{ marginRight: '8px' }} /> Deep Tech
+                        </button>
+                        <div className="sidebar-title">Compare Chart</div>
+                        <button onClick={() => navigate('/comparison')}>
+                            <FiBarChart style={{ marginRight: '8px' }} /> Compare FY
                         </button>
                     </motion.div>
                 )}

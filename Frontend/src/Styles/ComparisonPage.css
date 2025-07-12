@@ -1,0 +1,89 @@
+.comparison-page {
+  padding: 20px;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.comparison-page.dark {
+  --bg: #121212;
+  --text: #f0f0f0;
+  --card-bg: #1e1e1e;
+  --card-border: #333;
+}
+
+.comparison-page.light {
+  --bg: #f9f9f9;
+  --text: #111;
+  --card-bg: #fff;
+  --card-border: #ccc;
+}
+
+.comparison-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.comparison-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 28px;
+  z-index: 10;
+}
+
+.filter-select {
+  min-width: 150px;
+  max-width: 220px;
+  flex: 1 1 auto;
+  z-index: 11;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.chart-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s ease;
+}
+
+.chart-card h3 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.no-data-msg {
+  text-align: center;
+  color: gray;
+  margin-top: 40px;
+  font-size: 16px;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 480px) {
+  .comparison-title {
+    font-size: 1.5rem;
+  }
+
+  .filter-select {
+    min-width: 120px;
+    font-size: 14px;
+  }
+
+  .chart-card h3 {
+    font-size: 16px;
+  }
+}
