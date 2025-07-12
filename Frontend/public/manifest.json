@@ -1,7 +1,7 @@
 {
   "name": "PEARL",
   "short_name": "PEARL",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#006e6e",
