@@ -29,13 +29,19 @@ This project is a comprehensive educational dashboard built for the Anudip Found
  - Uploaded entries are displayed as cards in a gallery grid with images and text.
 ## 🛠️ Tech Stack
 
- - React.js
- - React Router DOM (for routing)
- - Chart.js (data visualization)
- - HTML5 / CSS3
- - JavaScript (ES6+)
- - LocalStorage (temporary data storage)
- - Modular CSS for styling 
+ -Frontend
+   - React.js
+   - React Router DOM (for routing)
+   - Chart.js (data visualization)
+   - HTML5 / CSS3
+   - JavaScript (ES6+)
+ -Backend
+   - Node Js
+   - Express Js
+   - MySQL
+   - Nodemon
+   - PDF Kit
+   - Json2Csv
 
 ## 🧪 How to Run Locally
    
