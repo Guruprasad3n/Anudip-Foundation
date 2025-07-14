@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react(),
   VitePWA({
     registerType: 'autoUpdate',
-    includeAssets: ['Anudip-Logo.png', 'offline.html', 'offline.css'],
+    includeAssets: ['Anudip-Logo.png', 'offline.html'],
     manifest: {
       name: 'PEARL Dashboard',
       short_name: 'PEARL',
