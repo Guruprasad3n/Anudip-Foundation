@@ -1,4 +1,3 @@
-// controllers/exportController.js
 const db = require('../config/db');
 require('dotenv').config();
 const { Parser } = require('json2csv');
@@ -22,64 +21,13 @@ const exportToCSV = (res, data, fields, filenamePrefix = 'report') => {
   }
 };
 
-// const exportToPDF = (res, data, fields, filenamePrefix = 'report') => {
-//   try {
-//     const doc = new PDFDocument({ margin: 30 });
-//     res.setHeader('Content-Type', 'application/pdf');
-//     res.setHeader(
-//       'Content-Disposition',
-//       `attachment; filename="${filenamePrefix}_${Date.now()}.pdf"`
-//     );
-//     doc.pipe(res);
-
-//     const rowHeight = 25;
-//     const columnWidth = 100;
-//     let y = 50;
-//     let x;
-
-//     // Header
-//     doc.font('Helvetica-Bold').fontSize(10);
-//     x = doc.page.margins.left;
-//     fields.forEach(field => {
-//       doc.rect(x, y, columnWidth, rowHeight).stroke();
-//       doc.text(field.label || field, x + 5, y + 7, {
-//         width: columnWidth - 10,
-//         align: 'left'
-//       });
-//       x += columnWidth;
-//     });
-
-//     // Rows
-//     doc.font('Helvetica').fontSize(9);
-//     y += rowHeight;
-//     data.forEach(row => {
-//       x = doc.page.margins.left;
-//       fields.forEach(field => {
-//         const key = typeof field === 'object' ? field.value : field;
-//         doc.rect(x, y, columnWidth, rowHeight).stroke();
-//         doc.text(String(row[key] ?? ''), x + 5, y + 7, {
-//           width: columnWidth - 10,
-//           align: 'left'
-//         });
-//         x += columnWidth;
-//       });
-//       y += rowHeight;
-//     });
-
-//     doc.end();
-//   } catch (error) {
-//     sendError(res, 'Failed to export PDF', error);
-//   }
-// };
-
-
 const exportToPDF = (res, data, fields, filenamePrefix = 'report') => {
   try {
     const margin = 30;
 
     const doc = new PDFDocument({
       size: 'A4',
-      layout: 'landscape', // Always landscape for more room
+      layout: 'landscape',
       margin,
     });
 
@@ -132,7 +80,7 @@ const exportToPDF = (res, data, fields, filenamePrefix = 'report') => {
       if (y + rowHeight > maxY) {
         doc.addPage({ layout: 'landscape', margin });
         y = margin;
-        drawHeader(); // Redraw header on new page
+        drawHeader();
       }
       drawRow(row);
     });
@@ -142,9 +90,6 @@ const exportToPDF = (res, data, fields, filenamePrefix = 'report') => {
     sendError(res, 'Failed to export PDF', error);
   }
 };
-
-
-
 
 const paginate = (array, page, limit) => {
   const start = (page - 1) * limit;
