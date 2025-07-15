@@ -335,3 +335,59 @@ body.dark .modal-content {
     gap: 16px;
   }
 }
+
+
+.table-wrapper {
+  max-height: 500px;
+  /* or any height you prefer */
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+  background-color: white;
+}
+
+[data-theme='dark'] .table-wrapper {
+  background-color: #1e1e1e;
+}
+
+.table-scroll-body {
+  overflow-y: auto;
+  max-height: 380px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.table-wrapper .batch-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.batch-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #007acc;
+  color: #fff;
+  font-weight: 600;
+  z-index: 2;
+}
+
+[data-theme='dark'] .batch-table thead th {
+  background-color: #263238;
+  color: #ffffff;
+}
+
+.batch-table tfoot td {
+  position: sticky;
+  bottom: 0;
+  background-color: #ecf0f1;
+  font-weight: bold;
+  z-index: 2;
+}
+
+[data-theme='dark'] .batch-table tfoot td {
+  background-color: #2c2c2c;
+  color: #ffffff;
+}

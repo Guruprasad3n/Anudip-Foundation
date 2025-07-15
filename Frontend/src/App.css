@@ -8,6 +8,7 @@ html,
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-color, #ffffff);
   color: var(--text-color, #000000);
+  overflow-y: auto !important;
 }
 
 .map-home {

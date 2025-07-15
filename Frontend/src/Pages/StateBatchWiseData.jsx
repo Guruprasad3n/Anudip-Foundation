@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import FilterBox from "../components/FilterBox";
 import Loader from "../components/Loader";
-import ErrorPage from "../components/ErrorPage"; // ✅ added
+import ErrorPage from "../components/ErrorPage";
 import "../Styles/batchwisedata.css";
 import { FaChartBar, FaFileCsv, FaFilePdf } from "react-icons/fa";
 import { Bar, Doughnut } from "react-chartjs-2";
@@ -44,6 +44,11 @@ function StateBatchWiseData() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  // useEffect(() => {
+
+  // }, []);
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,7 +65,14 @@ function StateBatchWiseData() {
       }
     };
 
+
     fetchData();
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") closeModal();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [stateName]);
 
   useEffect(() => {
@@ -90,7 +102,9 @@ function StateBatchWiseData() {
   );
 
   const barData = {
-    labels: filteredData.map(item => item.batch_code),
+    // labels: filteredData.map(item => item.batch_code),
+    labels: filteredData.map(item => item.batch_code.length > 10 ? item.batch_code.slice(0, 10) + '…' : item.batch_code),
+
     datasets: [
       {
         label: "Enrolled",
@@ -159,7 +173,50 @@ function StateBatchWiseData() {
         </div>
       </div>
 
-      <div className="table-responsive">
+      <div className="table-wrapper">
+        <table className="batch-table">
+          <thead>
+            <tr>
+              <th>Center Code</th>
+              <th>Batch Code</th>
+              <th>Enrolled</th>
+              <th>Trained</th>
+              <th>Placed</th>
+            </tr>
+          </thead>
+        </table>
+
+        <div className="table-scroll-body">
+          <table className="batch-table">
+            <tbody>
+              {filteredData.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.center_code}</td>
+                  <td>{item.batch_code}</td>
+                  <td>{item.enrolled}</td>
+                  <td>{item.trained}</td>
+                  <td>{item.placed}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <table className="batch-table">
+          <tfoot>
+            <tr className="total-row">
+              <td colSpan="2">TOTAL</td>
+              <td>{totals.enrolled}</td>
+              <td>{totals.trained}</td>
+              <td>{totals.placed}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+
+
+      {/* <div className="table-responsive">
         <table className="batch-table">
           <thead>
             <tr>
@@ -188,7 +245,7 @@ function StateBatchWiseData() {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
 
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
