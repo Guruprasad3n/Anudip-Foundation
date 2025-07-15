@@ -6,9 +6,7 @@ import StateBatchWiseData from "./Pages/StateBatchWiseData";
 import ProjectWise from "./Pages/ProjectWise";
 import PMOWise from "./Pages/PMOWiseData";
 import RMWiseData from "./Pages/RMWiseData";
-import Loader from "./components/Loader";
 import "./App.css";
-import CollapsibleSidebar from "./components/CollapsibleSidebar";
 import VerticalPage from "./Pages/VerticalData";
 import ErrorPage from "./components/ErrorPage";
 import ComparisonPage from "./Pages/ComparisonPage";
@@ -21,8 +19,6 @@ function App() {
 
   return (
     <>
-      {/* <Loader /> */}
-      {/* <CollapsibleSidebar /> */}
       {!isHomePage && <Navbar />}
 
       <div className={isHomePage ? "map-home" : ""}>

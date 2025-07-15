@@ -34,9 +34,6 @@
   --scrollbar-track-color: #333;
 }
 
-/*------------------------------------
-|           Reset & Base             |
-------------------------------------*/
 * {
   margin: 0;
   padding: 0;
@@ -59,9 +56,6 @@ body {
   min-height: 100vh;
 }
 
-/*------------------------------------
-|         Elements & Defaults        |
-------------------------------------*/
 a {
   color: var(--primary-color);
   text-decoration: none;
@@ -86,9 +80,6 @@ button {
   color: inherit;
 }
 
-/*------------------------------------
-|              Scrollbar             |
-------------------------------------*/
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

@@ -26,7 +26,6 @@ const ComparisonPage = () => {
   const [verticalOptions, setVerticalOptions] = useState([]);
   const [funderOptions, setFunderOptions] = useState([]);
 
-  // Fetch dropdown values (verticals and funders)
   useEffect(() => {
     const fetchFilters = async () => {
       try {

@@ -3,9 +3,240 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
-  min-height: 100vh;
   position: relative;
   z-index: 1;
+  overflow-x: auto;
+}
+
+/* Header */
+.rmwise-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.rmwise-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* Filter Section */
+.rmwise-filters-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  min-width: 320px;
+  position: relative;
+  z-index: 20;
+  animation: fadeSlideIn 0.4s ease-in-out;
+}
+
+.rmwise-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.rmwise-export-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.rmwise-select {
+  z-index: 9999 !important;
+  position: relative;
+}
+
+/* Table Container */
+.rmwise-table-wrapper {
+  max-height: 500px;
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid #ccc;
+}
+
+/* Table Styles */
+.rmwise-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  table-layout: fixed;
+}
+
+/* Head */
+.rmwise-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 8px 10px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.rmwise-table th:hover {
+  background-color: #005bb5;
+}
+
+/* Body */
+.rmwise-table td {
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--text-color);
+}
+
+/* Footer */
+.rmwise-table tfoot td {
+  position: sticky;
+  bottom: 0;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  z-index: 2;
+}
+
+/* Body scroll section for dynamic rows */
+.rmwise-table thead,
+.rmwise-table tbody,
+.rmwise-table tfoot {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.rmwise-table tbody {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.rmwise-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.rmwise-table tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* Quarter coloring */
+.q1-cell {
+  background-color: rgba(0, 123, 255, 0.08);
+}
+
+.q2-cell {
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.q3-cell {
+  background-color: rgba(255, 193, 7, 0.1);
+}
+
+.q4-cell {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* Export buttons */
+.download-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #085089;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* Animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .rmwise-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rmwise-filters-wrapper {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .rmwise-filters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rmwise-export-buttons {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .rmwise-select,
+  .download-btn {
+    width: 100%;
+  }
+
+  .rmwise-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .rmwise-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .rmwise-table {
+    min-width: 900px;
+  }
+}
+
+
+/* .rmwise-container {
+  padding: 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  position: relative;
+  z-index: 1;
+  overflow-x: auto;
 }
 
 .rmwise-header {
@@ -141,6 +372,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -184,4 +416,4 @@
   .rmwise-table {
     min-width: 900px;
   }
-}
+} */

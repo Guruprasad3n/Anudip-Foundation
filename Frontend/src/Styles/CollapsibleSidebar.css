@@ -1,4 +1,3 @@
-/* Container */
 .sidebar-container {
   position: fixed;
   top: 50%;
@@ -9,7 +8,6 @@
   z-index: 999;
 }
 
-/* Title inside the sidebar */
 .sidebar-title {
   font-size: 18px;
   font-weight: bold;
@@ -18,19 +16,16 @@
   letter-spacing: 0.6px;
 }
 
-/* Light mode */
 .light .sidebar-title {
   color: #007bff;
   text-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
 }
 
-/* Dark mode */
 .dark .sidebar-title {
   color: #00e0ff;
   text-shadow: 0 0 8px rgba(0, 224, 255, 0.7);
 }
 
-/* Toggle button */
 .toggle-btn {
   background: linear-gradient(135deg, #00e0ff, #006eff);
   color: white;
@@ -50,7 +45,6 @@
   transform: scale(1.05);
 }
 
-/* Tooltip */
 .tooltip {
   position: absolute;
   top: 50%;
@@ -66,7 +60,6 @@
   box-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
 }
 
-/* Sidebar menu container */
 .sidebar-options {
   display: flex;
   flex-direction: column;
@@ -79,21 +72,18 @@
   transition: background 0.3s ease;
 }
 
-/* Light mode background */
 .light .sidebar-options {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 123, 255, 0.2);
   box-shadow: 0 8px 20px rgba(0, 123, 255, 0.1);
 }
 
-/* Dark mode background */
 .dark .sidebar-options {
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(0, 224, 255, 0.3);
   box-shadow: 0 8px 20px rgba(0, 224, 255, 0.1);
 }
 
-/* Sidebar buttons */
 .sidebar-options button {
   font-size: 16px;
   padding: 12px 18px;
@@ -106,7 +96,6 @@
   border: 1px solid;
 }
 
-/* Light mode buttons */
 .light .sidebar-options button {
   background-color: rgba(0, 123, 255, 0.1);
   color: #007bff;
@@ -118,7 +107,6 @@
   color: #fff;
 }
 
-/* Dark mode buttons */
 .dark .sidebar-options button {
   background-color: rgba(0, 224, 255, 0.12);
   color: #ffffff;
@@ -131,7 +119,6 @@
   transform: scale(1.05);
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .toggle-btn {
     padding: 16px 20px;
@@ -147,101 +134,3 @@
     padding: 14px 20px;
   }
 }
-
-
-/* .sidebar-container {
-    position: fixed;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    z-index: 999;
-}
-
-.sidebar-title {
-    color: #00e0ff;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    text-align: center;
-    text-shadow: 0 0 8px rgba(0, 224, 255, 0.7);
-    letter-spacing: 0.6px;
-}
-
-.toggle-btn {
-    background: linear-gradient(135deg, #00e0ff, #006eff);
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    border-radius: 0 12px 12px 0;
-    padding: 12px 16px;
-    position: relative;
-    font-size: 18px;
-    box-shadow: 0 0 15px rgba(0, 224, 255, 0.7);
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.toggle-btn:hover {
-    background: linear-gradient(135deg, #00bfff, #0044cc);
-    transform: scale(1.05);
-}
-
-.tooltip {
-    position: absolute;
-    top: 50%;
-    left: 110%;
-    transform: translateY(-50%);
-    background-color: rgba(17, 17, 17, 0.85);
-    color: #ffffff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    white-space: nowrap;
-    font-size: 12px;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
-}
-
-.sidebar-options {
-    display: flex;
-    flex-direction: column;
-    backdrop-filter: blur(12px);
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(0, 224, 255, 0.3);
-    border-radius: 0 16px 16px 0;
-    box-shadow: 0 8px 20px rgba(0, 224, 255, 0.1);
-    padding: 14px;
-    margin-left: 8px;
-    gap: 12px;
-    min-width: 160px;
-}
-
-.sidebar-options button {
-    background-color: rgba(0, 224, 255, 0.12);
-    color: #ffffff;
-    border: 1px solid #00e0ff;
-    padding: 12px 18px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.sidebar-options button:hover {
-    background-color: #00e0ff;
-    color: #000;
-    transform: scale(1.05);
-}
-
-@media screen and (max-width: 768px) {
-    .toggle-btn {
-        padding: 16px 20px;
-        font-size: 22px;
-    }
-
-    .sidebar-options button {
-        font-size: 18px;
-        padding: 14px 20px;
-    }
-} */
