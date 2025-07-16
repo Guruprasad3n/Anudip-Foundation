@@ -6,7 +6,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { FaChartBar } from "react-icons/fa";
 import Modal from "react-modal";
 import "../Styles/ProjectWise.css";
-import ProjectChartModal from "../Not_Working/ProjectChartModal";
+import ProjectChartModal from "./ProjectChartModal";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 

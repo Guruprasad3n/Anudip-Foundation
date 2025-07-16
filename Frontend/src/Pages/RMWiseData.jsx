@@ -32,6 +32,7 @@ const RMWiseData = () => {
 
   useEffect(() => {
     fetchData();
+    document.title = "RM-wise Target Allocation | PEARL - Anudip Foundation";
   }, []);
 
   const fetchData = async () => {

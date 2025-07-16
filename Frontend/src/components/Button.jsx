@@ -11,7 +11,7 @@ const Buttons = () => {
       </div>
       <div className="buttons-wrapper">
         <Link to="/rm-wise-data">
-          <button className="custom-button"> Project wise Data </button>
+          <button className="custom-button"> RM wise Data </button>
         </Link>
         <Link to="/pmo-wise-data">
           <button className="custom-button"> PMO wise Data</button>

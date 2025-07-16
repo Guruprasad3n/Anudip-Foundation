@@ -47,6 +47,12 @@ function StateBatchWiseData() {
   // useEffect(() => {
 
   // }, []);
+  useEffect(() => {
+    if (stateName) {
+      document.title = `${stateName.toUpperCase()} - Batch-wise Summary | PEARL - Anudip Foundation`;
+    }
+  }, [stateName]);
+
 
 
   useEffect(() => {

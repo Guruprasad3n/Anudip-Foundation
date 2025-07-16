@@ -23,6 +23,7 @@ const PMOWise = () => {
 
     useEffect(() => {
         fetchPMOData();
+        document.title = "PMO-wise Target Overview | PEARL - Anudip Foundation";
     }, []);
 
     const fetchPMOData = async () => {
