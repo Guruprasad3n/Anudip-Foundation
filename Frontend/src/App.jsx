@@ -1,12 +1,11 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import "./App.css";
 import StatePage from "./Pages/StatePage";
 import IndiaMap from "./components/IndiaMap";
 import Navbar from "./components/Navbar";
 import StateBatchWiseData from "./Pages/StateBatchWiseData";
-import ProjectWise from "./Not_Working/ProjectWise";
 import PMOWise from "./Pages/PMOWiseData";
 import RMWiseData from "./Pages/RMWiseData";
-import "./App.css";
 import VerticalPage from "./Pages/VerticalData";
 import ErrorPage from "./components/ErrorPage";
 import ComparisonPage from "./Pages/ComparisonPage";
