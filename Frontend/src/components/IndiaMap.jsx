@@ -105,6 +105,7 @@ function IndiaMap() {
         path.removeEventListener("mouseout", mouseOutHandler);
       };
     });
+     document.title = "Home | PEARL - Anudip Foundation";
   }, []);
 
   return (
