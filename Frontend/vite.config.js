@@ -49,7 +49,7 @@ export default defineConfig({
   ],
   define: {
     // __API_URL__: JSON.stringify('https://anaudip-foundation.onrender.com'),
-    __API_URL__: JSON.stringify('http://localhost:3000'),
+    __API_URL__: JSON.stringify('http://ticket.anudip.org:3306'),
   },
   build: {
     rollupOptions: {
