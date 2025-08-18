@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anudip Foundation - Home</title>
+    <style>
+        /* Reset and basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: fadeIn 1s ease-in;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Slider Section */
+        .slider {
+            margin-top: 80px; /* Space for fixed header */
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: zoomIn 5s infinite alternate;
+        }
+
+        /* Placeholder images - replace with actual URLs or base64 */
+        .slide:nth-child(1) {
+            background-image: url('https://via.placeholder.com/1920x400?text=MS+Office+Training');
+        }
+
+        .slide:nth-child(2) {
+            background-image: url('https://via.placeholder.com/1920x400?text=Digital+Marketing+Course');
+        }
+
+        .slide:nth-child(3) {
+            background-image: url('https://via.placeholder.com/1920x400?text=AI+Tools+Workshop');
+        }
+
+        /* Middle Section with Posters */
+        .posters {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: white;
+            animation: slideUp 1s ease-in;
+        }
+
+        .posters h2 {
+            margin-bottom: 30px;
+        }
+
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .poster {
+            background-color: #eee;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .poster:hover {
+            transform: scale(1.05);
+        }
+
+        .poster img {
+            width: 100%;
+            border-radius: 10px;
+            /* Placeholder posters - replace with actual URLs */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { background-size: 100%; }
+            to { background-size: 110%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Anudip Foundation</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Slider -->
+    <section class="slider">
+        <div class="slides" id="slides">
+            <div class="slide">Empower Your Future with MS Office Training</div>
+            <div class="slide">Master Digital Marketing Skills</div>
+            <div class="slide">Explore AI Tools for Innovation</div>
+        </div>
+    </section>
+
+    <!-- Posters Section -->
+    <section class="posters">
+        <h2>Our Featured Posters</h2>
+        <div class="poster-grid">
+            <div class="poster">
+                <img src="https://via.placeholder.com/300x400?text=Course+Poster+1" alt="Poster 1">
+                <p>AI Tools and Advanced Excel</p>
+            </div>
+            <div class="poster">
+                <img src="https://via.placeholder.com/300x400?text=Course+Poster+2" alt="Poster 2">
+                <p>Web Designing and English Skills</p>
+            </div>
+            <div class="poster">
+                <img src="https://via.placeholder.com/300x400?text=Course+Poster+3" alt="Poster 3">
+                <p>MS Office and Typing Courses</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Anudip Foundation | Funded by Axis Bank</p>
+        <p>Location: Besides Green Apple Hotel, 3rd Floor | Ph: 9666748582, 8074518688</p>
+        <p>&copy; 2025 Anudip Foundation. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple slider script
+        const slides = document.getElementById('slides');
+        let currentSlide = 0;
+        const totalSlides = slides.children.length;
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    </script>
+
+</body>
+</html>
